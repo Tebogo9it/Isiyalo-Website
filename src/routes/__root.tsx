@@ -80,11 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Isiyalo Wellness — Mental Health & Practice Care in Soweto" },
       { name: "description", content: "Isiyalo Wellness Centre — a welcoming space in Soweto for psychology practice, counselling, and community mental health programs." },
       { name: "author", content: "Isiyalo Wellness" },
-      { property: "og:title", content: "Isiyalo Wellness" },
-      { property: "og:description", content: "A partner in wellness. Practice support, counselling, and community mental health in Soweto." },
+      { property: "og:title", content: "Isiyalo Wellness — Mental Health & Practice Care in Soweto" },
+      { property: "og:description", content: "Isiyalo Wellness Centre — a welcoming space in Soweto for psychology practice, counselling, and community mental health programs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Isiyalo_Wellness" },
+      { name: "twitter:title", content: "Isiyalo Wellness — Mental Health & Practice Care in Soweto" },
+      { name: "twitter:description", content: "Isiyalo Wellness Centre — a welcoming space in Soweto for psychology practice, counselling, and community mental health programs." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/945f7102-2c41-4877-b29d-71c7eb7e2361/id-preview-f58aad87--2ac72736-7108-4f90-85f5-7311291590e0.lovable.app-1784423997832.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/945f7102-2c41-4877-b29d-71c7eb7e2361/id-preview-f58aad87--2ac72736-7108-4f90-85f5-7311291590e0.lovable.app-1784423997832.png" },
     ],
     links: [
       {
