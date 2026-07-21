@@ -1,9 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg.asset.json";
-import logo from "@/assets/isiyalo-logo.png.asset.json";
+import logo from "@/assets/isiyalo-logo.png";
 import rainWindow from "@/assets/rain-window.jpg.asset.json";
-import blossoms from "@/assets/blossoms.jpg.asset.json";
+import blossoms from "@/assets/blossoms.jpg";
+import heroVideo from "@/assets/Isiyalo hero.mp4";
+import VariableProximity from "@/components/VariableProximity";
+import TrueFocus from "@/components/TrueFocus";
+import BlurText from "@/components/BlurText";
+import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -96,18 +101,24 @@ function Nav() {
 }
 
 function Hero({ scrollY }: { scrollY: number }) {
+  const containerRef = useRef<HTMLElement>(null);
+
   return (
-    <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
-      {/* Background — rotated landscape image */}
-      <div
-        className="absolute inset-0 -z-10 animate-drift"
+    <section ref={containerRef} id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
+      {/* Background — video playing in loop */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster={heroBg.url}
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
         style={{
-          backgroundImage: `url(${heroBg.url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           transform: `translate3d(0, ${scrollY * 0.15}px, 0) scale(1.08)`,
         }}
-      />
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
       {/* Atmospheric wash */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/25 via-black/10 to-background" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,transparent_0%,rgba(0,0,0,0.15)_70%)]" />
@@ -115,7 +126,7 @@ function Hero({ scrollY }: { scrollY: number }) {
       {/* Logo — top center just below navbar */}
       <div className="pointer-events-none absolute inset-x-0 top-20 z-20 flex justify-center">
         <img
-          src={logo.url}
+          src={logo}
           alt="Isiyalo Wellness Centre"
           className="h-28 w-auto animate-mask-reveal opacity-95 drop-shadow-[0_2px_20px_rgba(0,0,0,0.25)] md:h-40"
         />
@@ -133,10 +144,27 @@ function Hero({ scrollY }: { scrollY: number }) {
           className="animate-fade-up mt-6 max-w-4xl text-5xl font-medium leading-[1.02] text-white md:text-7xl"
           style={{ animationDelay: "0.35s" }}
         >
-          A partner in wellness,
+          <VariableProximity
+            label="A partner in wellness,"
+            className="variable-proximity-hero-1"
+            fromFontVariationSettings="'wght' 500, 'opsz' 9"
+            toFontVariationSettings="'wght' 1000, 'opsz' 40"
+            containerRef={containerRef}
+            radius={200}
+            falloff="linear"
+          />
           <br />
           <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal">
-            rooted in compassion.
+            <VariableProximity
+              label="rooted in compassion."
+              className="variable-proximity-hero-2"
+              fromFontVariationSettings="'wght' 300, 'opsz' 9"
+              toFontVariationSettings="'wght' 800, 'opsz' 40"
+              containerRef={containerRef}
+              radius={200}
+              falloff="linear"
+              style={{ fontFamily: "'Roboto Flex', sans-serif" }}
+            />
           </span>
         </h1>
         <p
@@ -178,7 +206,15 @@ function Hero({ scrollY }: { scrollY: number }) {
             <div key={t}>
               <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/70">{n}</div>
               <div className="mt-1 text-white" style={{ fontFamily: "var(--font-body)" }}>
-                {t}
+                <TrueFocus
+                  sentence={t}
+                  manualMode={false}
+                  blurAmount={2}
+                  borderColor="white"
+                  glowColor="rgba(255, 255, 255, 0.3)"
+                  animationDuration={0.4}
+                  pauseBetweenAnimations={1.5}
+                />
               </div>
             </div>
           ))}
@@ -216,36 +252,90 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 function Statement() {
+  useEffect(() => {
+    let sakuraInstance: any = null;
+    import("sakura-js").then((mod) => {
+      const Sakura = (mod as any).default?.default || (mod as any).default || mod;
+      if (typeof Sakura === "function") {
+        sakuraInstance = new Sakura("#sakura-container", {
+        fallSpeed: 1.8,
+        delay: 550,
+        lifeTime: 12000,
+        minSize: 8,
+        maxSize: 16,
+        colors: [
+          {
+            gradientColorStart: "rgba(255,230,242,.95)",
+            gradientColorEnd: "rgba(255,182,210,.85)",
+            gradientColorDegree: 120,
+          },
+          {
+            gradientColorStart: "rgba(255,240,250,.9)",
+            gradientColorEnd: "rgba(240,200,255,.8)",
+            gradientColorDegree: 120,
+          },
+          {
+            gradientColorStart: "rgba(255,255,255,.9)",
+            gradientColorEnd: "rgba(255,220,240,.8)",
+            gradientColorDegree: 120,
+          },
+        ],
+      });
+    }
+  });
+
+    return () => {
+      if (sakuraInstance) {
+        sakuraInstance.stop();
+      }
+    };
+  }, []);
+
   return (
-    <section id="about" className="relative border-t border-border py-28">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 md:grid-cols-12">
-        <div className="md:col-span-4">
-          <Reveal>
-            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-              § Our Statement
-            </div>
-          </Reveal>
-        </div>
-        <div className="md:col-span-8">
-          <Reveal delay={0.05}>
-            <h2 className="text-3xl leading-[1.1] tracking-tight text-foreground md:text-5xl">
-              We empower psychology practitioners through reliable onsite and
-              remote administration — and we hold space for the community, freely,
-              where it matters most.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p
-              className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Isiyalo Wellness Centre in Soweto is a welcoming, fully furnished
-              home for professionals delivering quality mental health care. We
-              believe support should be accessible, compassionate, and rooted in
-              excellence.
-            </p>
-          </Reveal>
-        </div>
+    <section id="about" className="relative isolate overflow-hidden border-t border-border py-28">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 -z-10 animate-shimmer"
+        style={{
+          backgroundImage: `url(${blossoms})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      {/* Gradient overlay: clear on the top-right, fading to opaque background color on the left where the text is */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-transparent" />
+
+      {/* Sakura container for falling petals */}
+      <div id="sakura-container" className="absolute inset-0 -z-5 pointer-events-none" />
+
+      <div className="mx-auto max-w-5xl px-6 text-left">
+        <Reveal>
+          <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+            § Our Statement
+          </div>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-6 text-3xl leading-[1.2] tracking-tight text-foreground md:text-5xl font-medium max-w-4xl">
+            <BlurText
+              text="We empower psychology practitioners through reliable onsite and remote administration — and we hold space for the community, freely, where it matters most."
+              delay={35}
+              animateBy="words"
+              direction="bottom"
+              className="inline-flex flex-wrap"
+            />
+          </h2>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <p
+            className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Isiyalo Wellness Centre in Soweto is a welcoming, fully furnished
+            home for professionals delivering quality mental health care. We
+            believe support should be accessible, compassionate, and rooted in
+            excellence.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
