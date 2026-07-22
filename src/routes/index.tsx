@@ -260,15 +260,16 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 function Statement() {
-  const [isAnimating, setIsAnimating] = useState(true);
-  const sakuraRef = useRef<any>(null);
-
   useEffect(() => {
-    if (isAnimating && !sakuraRef.current) {
+    let sakuraInstance: any = null;
+    let observer: IntersectionObserver | null = null;
+
+    const startSakura = () => {
+      if (sakuraInstance) return;
       import("sakura-js").then((mod) => {
         const Sakura = (mod as any).default?.default || (mod as any).default || mod;
         if (typeof Sakura === "function") {
-          sakuraRef.current = new Sakura("#our-statement", {
+          sakuraInstance = new Sakura("#our-statement", {
             fallSpeed: 2.5,
             minSize: 8,
             maxSize: 12,
@@ -283,22 +284,35 @@ function Statement() {
           });
         }
       });
-    } else if (!isAnimating && sakuraRef.current) {
-      sakuraRef.current.stop();
-      sakuraRef.current = null;
+    };
+
+    const targetEl = document.querySelector("#our-statement");
+    if (targetEl) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              startSakura();
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(targetEl);
+    } else {
+      startSakura();
     }
 
     return () => {
-      if (sakuraRef.current) {
-        sakuraRef.current.stop();
-        sakuraRef.current = null;
+      if (observer) {
+        observer.disconnect();
+      }
+      if (sakuraInstance) {
+        sakuraInstance.stop();
+        sakuraInstance = null;
       }
     };
-  }, [isAnimating]);
-
-  const togglePetals = () => {
-    setIsAnimating((prev) => !prev);
-  };
+  }, []);
 
   return (
     <section id="our-statement" className="relative isolate overflow-hidden border-t border-border py-28">
@@ -317,18 +331,8 @@ function Statement() {
 
       <div className="mx-auto max-w-5xl px-6 text-left">
         <Reveal>
-          <div className="flex items-center justify-between">
-            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-              § Our Statement
-            </div>
-            <button
-              onClick={togglePetals}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground shadow-sm backdrop-blur transition hover:bg-accent hover:text-accent-foreground"
-              title="Toggle falling cherry blossom petals animation"
-            >
-              <span>🌸</span>
-              <span>{isAnimating ? "Pause Petals" : "Start Petals"}</span>
-            </button>
+          <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+            § Our Statement
           </div>
         </Reveal>
         <Reveal delay={0.05}>
