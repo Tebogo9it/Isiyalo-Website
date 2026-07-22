@@ -188,3 +188,15 @@
 @utility animate-shimmer {
   animation: iw-shimmer 6s ease-in-out infinite;
 }
+
+/* Contain Sakura petals within #our-statement section boundary */
+#our-statement {
+  position: relative;
+  overflow: hidden;
+}
+
+#our-statement .sakura {
+  position: absolute !important;
+  pointer-events: none;
+  z-index: 10;
+}
