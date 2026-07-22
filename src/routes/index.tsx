@@ -270,7 +270,7 @@ function Statement() {
         const Sakura = (mod as any).default?.default || (mod as any).default || mod;
         if (typeof Sakura === "function") {
           sakuraInstance = new Sakura("#our-statement", {
-            fallSpeed: 2.5,
+            fallSpeed: 5.5,
             minSize: 8,
             maxSize: 12,
             delay: 500,
@@ -304,9 +304,6 @@ function Statement() {
     }
 
     return () => {
-      if (observer) {
-        observer.disconnect();
-      }
       if (sakuraInstance) {
         sakuraInstance.stop();
         sakuraInstance = null;
