@@ -8,6 +8,7 @@ import heroVideo from "@/assets/Isiyalo hero.mp4";
 import VariableProximity from "@/components/VariableProximity";
 import TrueFocus from "@/components/TrueFocus";
 import BlurText from "@/components/BlurText";
+import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -364,68 +365,97 @@ function Services() {
     {
       n: "01",
       title: "Practice Administration",
-      body: "Reliable onsite and remote billing and admin for psychology practitioners.",
+      subtitle: "Onsite & Remote Support",
+      body: "Reliable onsite and remote billing, scheduling, and administrative care for psychology practitioners.",
+      tag: "Admin & Operations",
     },
     {
       n: "02",
       title: "Consulting Space",
-      body: "A fully equipped, furnished environment for mental health professionals.",
+      subtitle: "Soweto Wellness Facility",
+      body: "A fully equipped, beautifully furnished environment designed specifically for mental health professionals.",
+      tag: "Workspaces",
     },
     {
       n: "03",
       title: "Clinical Counselling",
-      body: "Clinical psychology and counselling for individuals, couples, and families.",
+      subtitle: "Individual, Couple & Family",
+      body: "Comprehensive clinical psychology and compassionate counselling tailored for individuals, couples, and families.",
+      tag: "Clinical Care",
     },
     {
       n: "04",
       title: "Workshops & Programs",
-      body: "Community programs on trauma, parenting, and resilience.",
+      subtitle: "Community Mental Health",
+      body: "Impactful community programs and interactive workshops focusing on trauma recovery, parenting, and emotional resilience.",
+      tag: "Community Outreach",
     },
   ];
-  return (
-    <section id="services" className="relative border-t border-border bg-secondary/60 py-28">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <Reveal>
-            <div>
-              <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-                § Core Services
-              </div>
-              <h2 className="mt-4 max-w-2xl text-4xl leading-[1.05] tracking-tight md:text-6xl">
-                Care held with structure,
-                <br />
-                <span style={{ fontFamily: "var(--font-body)" }} className="italic">
-                  delivered with warmth.
-                </span>
-              </h2>
-            </div>
-          </Reveal>
-        </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {services.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.06}>
-              <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.25)]">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-                    {s.n} — Service
-                  </span>
-                  <span className="font-mono text-[11px] text-muted-foreground transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
+  return (
+    <section id="services" className="relative isolate overflow-hidden border-t border-border py-28">
+      {/* Full background image */}
+      <div
+        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat animate-shimmer"
+        style={{ backgroundImage: `url(${blossoms})` }}
+      />
+      {/* Backdrop overlay */}
+      <div className="absolute inset-0 -z-10 bg-background/90 backdrop-blur-md" />
+
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal>
+          <div className="text-center">
+            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+              § Core Services
+            </div>
+            <h2 className="mt-4 text-4xl leading-[1.05] tracking-tight md:text-6xl font-medium">
+              Care held with structure,
+              <br />
+              <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal">
+                delivered with warmth.
+              </span>
+            </h2>
+          </div>
+        </Reveal>
+
+        <div className="mt-12">
+          <ScrollStack useWindowScroll={true} itemDistance={50} itemStackDistance={30} baseScale={0.88} blurAmount={2}>
+            {services.map((s) => (
+              <ScrollStackItem key={s.n} itemClassName="border border-border/80 bg-card/95 backdrop-blur-md shadow-2xl overflow-hidden rounded-3xl p-8 md:p-12">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs uppercase tracking-[0.24em] text-primary font-semibold">
+                      {s.n} — {s.tag}
+                    </span>
+                    <span className="rounded-full border border-border bg-secondary/80 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+                      {s.subtitle}
+                    </span>
+                  </div>
+                  <div className="mt-6 md:mt-10">
+                    <h3 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground">{s.title}</h3>
+                    <p
+                      className="mt-4 max-w-2xl text-lg md:text-xl leading-relaxed text-muted-foreground"
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      {s.body}
+                    </p>
+                  </div>
+                  <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-6">
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      Isiyalo Practice Care
+                    </span>
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary font-semibold hover:underline"
+                    >
+                      <span>Inquire service</span>
+                      <span>→</span>
+                    </a>
+                  </div>
                 </div>
-                <div className="mt-16">
-                  <h3 className="text-2xl md:text-3xl">{s.title}</h3>
-                  <p
-                    className="mt-3 text-base leading-relaxed text-muted-foreground"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {s.body}
-                  </p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+              </ScrollStackItem>
+            ))}
+          </ScrollStack>
         </div>
       </div>
     </section>
