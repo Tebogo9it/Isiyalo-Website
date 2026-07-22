@@ -399,8 +399,8 @@ function Services() {
         className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat animate-shimmer"
         style={{ backgroundImage: `url(${blossoms})` }}
       />
-      {/* Backdrop overlay */}
-      <div className="absolute inset-0 -z-10 bg-background/90 backdrop-blur-md" />
+      {/* Soft overlay so background image is fully visible and vibrant */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/20 to-background/50" />
 
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
