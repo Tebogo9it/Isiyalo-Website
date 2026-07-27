@@ -53,11 +53,11 @@ function Nav() {
     { href: "#contact", label: "Contact" },
   ];
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background shadow-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#top" className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] font-semibold text-foreground hover:opacity-80 transition-opacity">
-          <img src={logo} alt="Isiyalo Logo" className="h-9 w-auto object-contain brightness-0" />
-          <span>Isiyalo / Wellness</span>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md shadow-sm">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
+        <a href="#top" className="flex items-center gap-2.5 sm:gap-3 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground hover:opacity-80 transition-opacity">
+          <img src={logo} alt="Isiyalo Logo" className="h-8 sm:h-9 w-auto object-contain brightness-0" />
+          <span>Isiyalo<span className="hidden xs:inline sm:inline"> Wellness</span></span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -78,7 +78,7 @@ function Nav() {
         </a>
         <button
           onClick={() => setOpen((v) => !v)}
-          className="rounded-full border border-border bg-secondary px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground md:hidden"
+          className="rounded-full border border-border bg-secondary px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground md:hidden"
           aria-label="Toggle menu"
         >
           {open ? "Close" : "Menu"}
@@ -92,7 +92,7 @@ function Nav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-mono text-xs uppercase tracking-[0.24em] text-foreground hover:text-primary transition-colors"
+                className="font-mono text-xs uppercase tracking-[0.24em] text-foreground hover:text-primary transition-colors py-1"
               >
                 {l.label}
               </a>
@@ -131,28 +131,28 @@ function Hero({ scrollY }: { scrollY: number }) {
         <source src={heroVideo} type="video/mp4" />
       </video>
       {/* Atmospheric wash */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/25 via-black/10 to-background" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,transparent_0%,rgba(0,0,0,0.15)_70%)]" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/35 via-black/15 to-background" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,transparent_0%,rgba(0,0,0,0.2)_70%)]" />
 
       {/* Logo — top center just below navbar */}
-      <div className="pointer-events-none absolute inset-x-0 top-20 z-20 flex justify-center">
+      <div className="pointer-events-none absolute inset-x-0 top-16 sm:top-20 z-20 flex justify-center">
         <img
           src={logo}
           alt="Isiyalo Wellness Centre"
-          className="h-28 w-auto animate-mask-reveal opacity-95 drop-shadow-[0_2px_20px_rgba(0,0,0,0.25)] md:h-40"
+          className="h-20 sm:h-28 w-auto animate-mask-reveal opacity-95 drop-shadow-[0_2px_20px_rgba(0,0,0,0.25)] md:h-40"
         />
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col items-center justify-end px-6 pb-24 pt-64 text-center md:pt-72">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col items-center justify-end px-4 sm:px-6 pb-16 sm:pb-24 pt-36 sm:pt-48 md:pt-72 text-center">
         <p
-          className="animate-fade-up font-mono text-[11px] uppercase tracking-[0.32em] text-white/90"
+          className="animate-fade-up font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/90"
           style={{ animationDelay: "0.2s" }}
         >
           Soweto · Estd 2023
         </p>
         <h1
-          className="animate-fade-up mt-6 max-w-4xl text-5xl font-medium leading-[1.02] text-white md:text-7xl"
+          className="animate-fade-up mt-4 sm:mt-6 max-w-4xl text-3xl sm:text-5xl font-medium leading-[1.08] sm:leading-[1.02] text-white md:text-7xl"
           style={{ animationDelay: "0.35s" }}
         >
           <VariableProximity
@@ -179,25 +179,25 @@ function Hero({ scrollY }: { scrollY: number }) {
           </span>
         </h1>
         <p
-          className="animate-fade-up mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg"
+          className="animate-fade-up mt-4 sm:mt-6 max-w-xl text-sm sm:text-base leading-relaxed text-white/85 md:text-lg"
           style={{ fontFamily: "var(--font-body)", animationDelay: "0.5s" }}
         >
           Practice support, counselling, and community mental health, held in a
           welcoming space where care meets excellence.
         </p>
         <div
-          className="animate-fade-up mt-10 flex flex-col items-center gap-3 sm:flex-row"
+          className="animate-fade-up mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto px-4 sm:px-0"
           style={{ animationDelay: "0.65s" }}
         >
           <a
             href="#contact"
-            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-mono text-[11px] uppercase tracking-[0.24em] text-neutral-900 transition hover:-translate-y-0.5 hover:shadow-xl"
+            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-mono text-[11px] uppercase tracking-[0.24em] text-neutral-900 transition hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto"
           >
             Book a session
           </a>
           <a
             href="#services"
-            className="inline-flex items-center justify-center rounded-full border border-white/60 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.24em] text-white transition hover:bg-white/10"
+            className="inline-flex items-center justify-center rounded-full border border-white/60 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.24em] text-white transition hover:bg-white/10 w-full sm:w-auto"
           >
             Explore services →
           </a>
@@ -205,7 +205,7 @@ function Hero({ scrollY }: { scrollY: number }) {
 
         {/* Bottom meta strip */}
         <div
-          className="animate-fade-up mt-16 grid w-full max-w-4xl grid-cols-2 gap-6 border-t border-white/25 pt-6 text-left md:grid-cols-4"
+          className="animate-fade-up mt-12 sm:mt-16 grid w-full max-w-4xl grid-cols-2 gap-4 sm:gap-6 border-t border-white/25 pt-6 text-left md:grid-cols-4"
           style={{ animationDelay: "0.85s" }}
         >
           {[
@@ -215,8 +215,8 @@ function Hero({ scrollY }: { scrollY: number }) {
             ["04 —", "Workshops"],
           ].map(([n, t]) => (
             <div key={t}>
-              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/70">{n}</div>
-              <div className="mt-1 text-white" style={{ fontFamily: "var(--font-body)" }}>
+              <div className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-white/70">{n}</div>
+              <div className="mt-1 text-xs sm:text-sm text-white" style={{ fontFamily: "var(--font-body)" }}>
                 <TrueFocus
                   sentence={t}
                   manualMode={false}
@@ -264,7 +264,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 function Statement() {
   return (
-    <section id="our-statement" className="relative isolate overflow-hidden border-t border-border py-28">
+    <section id="our-statement" className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28">
       <span id="about" className="absolute -top-24" />
       <FallingSakura petalCount={35} />
       {/* Background image */}
@@ -279,14 +279,14 @@ function Statement() {
       {/* Gradient overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-transparent" />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6 text-left">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-left">
         <Reveal>
-          <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+          <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
             § Our Statement
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-6 text-3xl leading-[1.2] tracking-tight text-foreground md:text-5xl font-medium max-w-4xl">
+          <h2 className="mt-4 sm:mt-6 text-2xl sm:text-3xl md:text-5xl leading-[1.25] sm:leading-[1.2] tracking-tight text-foreground font-medium max-w-4xl">
             <BlurText
               text="We empower psychology practitioners through reliable onsite and remote administration and we hold space for the community, freely, where it matters most."
               delay={35}
@@ -298,7 +298,7 @@ function Statement() {
         </Reveal>
         <Reveal delay={0.15}>
           <p
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+            className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Isiyalo Wellness Centre in Soweto is a welcoming, fully furnished
@@ -377,7 +377,7 @@ function Services() {
   ];
 
   return (
-    <section id="services" className="relative isolate overflow-hidden border-t border-border py-28">
+    <section id="services" className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28">
       {/* Full background image */}
       <div
         className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat animate-shimmer"
@@ -386,13 +386,13 @@ function Services() {
       {/* Soft overlay so background image is fully visible and vibrant */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/20 to-background/50" />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
           <div className="text-center">
-            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
               § Core Services
             </div>
-            <h2 className="mt-4 text-4xl leading-[1.05] tracking-tight md:text-6xl font-medium">
+            <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl font-medium leading-[1.05] tracking-tight">
               Care held with structure,
               <br />
               <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal">
@@ -402,7 +402,7 @@ function Services() {
           </div>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">
+        <div className="mt-10 sm:mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 justify-items-center w-full">
           {serviceCards.map((card, idx) => (
             <PlaceCard
               key={idx}
@@ -427,21 +427,21 @@ function Services() {
 
 function Community() {
   return (
-    <section id="community" className="relative border-t border-border py-28">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 md:grid-cols-2 md:items-center">
+    <section id="community" className="relative border-t border-border py-16 sm:py-28">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:gap-12 px-4 sm:px-6 md:grid-cols-2 md:items-center">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
             <img
               src={blossoms.url}
               alt="Spring blossoms"
-              className="h-[520px] w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+              className="h-[300px] sm:h-[420px] md:h-[520px] w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/80">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
+              <div className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-white/80">
                 Isiyalo Wellness Centre · Estd 2023
               </div>
-              <div className="mt-1 text-white" style={{ fontFamily: "var(--font-body)" }}>
+              <div className="mt-1 text-xs sm:text-sm text-white" style={{ fontFamily: "var(--font-body)" }}>
                 36204 Copper Street, Protea Glen Ext 35, Soweto
               </div>
             </div>
@@ -449,10 +449,10 @@ function Community() {
         </Reveal>
         <Reveal delay={0.1}>
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
               § Community Engagement
             </div>
-            <h2 className="mt-4 text-4xl leading-[1.05] tracking-tight md:text-5xl">
+            <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
               Beyond private practice —
               <span style={{ fontFamily: "var(--font-body)" }} className="italic">
                 {" "}
@@ -460,7 +460,7 @@ function Community() {
               </span>
             </h2>
             <p
-              className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground"
+              className="mt-4 sm:mt-6 max-w-lg text-base sm:text-lg leading-relaxed text-muted-foreground"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Isiyalo actively contributes to society by offering space and
@@ -468,12 +468,12 @@ function Community() {
               health initiatives, strengthening the professional ecosystem and
               the wellbeing of families.
             </p>
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-6 sm:mt-8 space-y-3">
               {["Trauma recovery circles", "Parenting workshops", "Resilience programs"].map(
                 (t) => (
                   <li key={t} className="flex items-center gap-3">
                     <span className="h-px w-6 bg-foreground/40" />
-                    <span className="font-mono text-[11px] uppercase tracking-[0.22em]">{t}</span>
+                    <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">{t}</span>
                   </li>
                 ),
               )}
@@ -487,7 +487,7 @@ function Community() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative isolate overflow-hidden border-t border-border py-28">
+    <section id="contact" className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28">
       <div
         className="absolute inset-0 -z-10 opacity-40 animate-shimmer"
         style={{
@@ -498,14 +498,14 @@ function Contact() {
       />
       <div className="absolute inset-0 -z-10 bg-background/70 backdrop-blur-sm" />
 
-      <div className="mx-auto max-w-4xl px-6 text-center">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <Reveal>
-          <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+          <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
             § Reach Out
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-4 text-4xl leading-[1.05] tracking-tight md:text-6xl">
+          <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl tracking-tight">
             Begin the conversation.
           </h2>
         </Reveal>
@@ -518,21 +518,21 @@ function Contact() {
             const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
             window.location.href = `mailto:isiyalowellnesscentre@gmail.com?subject=${subject}&body=${body}`;
           }}
-          className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-3 text-left"
+          className="mx-auto mt-8 sm:mt-12 grid max-w-2xl grid-cols-1 gap-3 text-left"
         >
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <input
               required
               name="name"
               placeholder="Name"
-              className="w-full rounded-full border border-border bg-card px-5 py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
+              className="w-full rounded-full border border-border bg-card px-4 py-3.5 sm:px-5 sm:py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
             />
             <input
               required
               type="email"
               name="email"
               placeholder="Email"
-              className="w-full rounded-full border border-border bg-card px-5 py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
+              className="w-full rounded-full border border-border bg-card px-4 py-3.5 sm:px-5 sm:py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
             />
           </div>
           <textarea
@@ -540,15 +540,15 @@ function Contact() {
             name="message"
             rows={4}
             placeholder="How can we support you?"
-            className="w-full rounded-3xl border border-border bg-card px-5 py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
+            className="w-full rounded-2xl sm:rounded-3xl border border-border bg-card px-4 py-3.5 sm:px-5 sm:py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
           />
           <div className="mt-2 flex flex-col items-stretch justify-between gap-3 sm:flex-row sm:items-center">
-            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-muted-foreground break-all sm:break-normal">
               +27 81 346 8914 · isiyalowellnesscentre@gmail.com
             </div>
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 font-mono text-[11px] uppercase tracking-[0.24em] text-background transition hover:-translate-y-0.5 hover:shadow-xl"
+              className="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 font-mono text-[11px] uppercase tracking-[0.24em] text-background transition hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto"
             >
               Send message
             </button>
@@ -562,16 +562,16 @@ function Contact() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-secondary/40">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
+      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 py-8 sm:py-10 md:flex-row md:items-center">
         <div>
-          <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+          <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
             Isiyalo Management · Trading as Isiyalo Wellness
           </div>
-          <div className="mt-1 text-sm" style={{ fontFamily: "var(--font-body)" }}>
+          <div className="mt-1 text-xs sm:text-sm" style={{ fontFamily: "var(--font-body)" }}>
             © {new Date().getFullYear()} — Soweto, South Africa.
           </div>
         </div>
-        <div className="flex gap-6 font-mono text-[11px] uppercase tracking-[0.22em]">
+        <div className="flex flex-wrap gap-4 sm:gap-6 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">
           <a href="#" className="hover:opacity-70">Isiyalo Wellness</a>
           <a href="#" className="hover:opacity-70">Isiyalo_Wellness</a>
           <a href="#" className="hover:opacity-70">Isiyalo_Overflow</a>
