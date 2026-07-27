@@ -12,6 +12,7 @@ import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 import { PlaceCard } from "@/components/ui/card-22";
 import FallingSakura from "@/components/FallingSakura";
 import HoverImageReveal from "@/components/HoverImageReveal";
+import communityBg from "@/assets/community-bg.jpg";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -430,65 +431,82 @@ function Community() {
   const communityItems = {
     itemCount: 5,
     item1: {
-      text: "TRAUMA RECOVERY CIRCLES",
-      image: { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop", alt: "Trauma recovery circles" },
+      text: "PROTEA GLEN COMMUNITY",
+      image: { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop", alt: "Protea Glen Community" },
     },
     item2: {
-      text: "PARENTING WORKSHOPS",
-      image: { src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1000&auto=format&fit=crop", alt: "Parenting workshops" },
+      text: "SANDTON COMMUNITY",
+      image: { src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=800&auto=format&fit=crop", alt: "Sandton Community" },
     },
     item3: {
-      text: "RESILIENCE & EMPOWERMENT",
-      image: { src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1000&auto=format&fit=crop", alt: "Resilience programs" },
+      text: "JOHANNESBURG COMMUNITY",
+      image: { src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop", alt: "Johannesburg Community" },
     },
     item4: {
-      text: "YOUTH MENTAL HEALTH",
-      image: { src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=1000&auto=format&fit=crop", alt: "Youth mental health" },
+      text: "CAPETOWN COMMUNITY CARE",
+      image: { src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800&auto=format&fit=crop", alt: "Capetown Community Care" },
     },
     item5: {
-      text: "SOWETO COMMUNITY CARE",
-      image: { src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop", alt: "Community outreach in Soweto" },
+      text: "ROSEBANK COMMUNITY CARE",
+      image: { src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop", alt: "Rosebank Community Care" },
     },
   };
 
   return (
-    <section id="community" className="relative border-t border-border py-16 sm:py-28 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="community" className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28">
+      {/* Background picture filling the section with zero blur */}
+      <img
+        src={communityBg}
+        alt="Community background blossoms"
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+      />
+      {/* Minimal overlay so the picture is vibrant and text on top is crisp */}
+      <div className="absolute inset-0 -z-10 bg-black/35" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
-          <div className="text-center mb-10 sm:mb-14">
-            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+          <div className="text-center mb-8 sm:mb-10">
+            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-white/80">
               § Community Engagement
             </div>
-            <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl font-medium leading-[1.05] tracking-tight">
+            <h2 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-medium leading-[1.08] tracking-tight text-white max-w-4xl mx-auto">
               Beyond private practice —
               <br />
-              <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal">
+              <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal text-pink-200">
                 a bridge to Soweto.
               </span>
             </h2>
             <p
-              className="mt-4 max-w-xl mx-auto text-base sm:text-lg leading-relaxed text-muted-foreground"
+              className="mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-white/90"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Isiyalo actively offers space and expertise to support community mental
-              health initiatives, strengthening families and wellbeing across Soweto.
+              Isiyalo actively offers space and expertise — free of charge — to support
+              community mental health initiatives, strengthening the professional ecosystem and
+              the wellbeing of families across Soweto.
             </p>
           </div>
         </Reveal>
 
-        <div className="w-full relative min-h-[450px] sm:min-h-[550px] flex items-center justify-center">
+        <div className="w-full relative min-h-[420px] sm:min-h-[500px] flex items-center justify-center">
           <HoverImageReveal
             items={communityItems}
+            textColor="#FFFFFF"
             dimColor="#FC72B9"
-            rowGap={53}
-            imageWidth={400}
-            imageHeight={570}
+            rowGap={40}
+            imageWidth={360}
+            imageHeight={480}
             rounded={43}
             followStrength={8}
             transition={{ mass: 1, type: "spring", damping: 40, stiffness: 400 }}
             align="center"
           />
         </div>
+
+        <Reveal delay={0.2}>
+          <div className="mt-8 text-center font-mono text-xs uppercase tracking-[0.24em] text-white/70">
+            36204 Copper Street, Protea Glen Ext 35, Soweto · Estd 2023
+          </div>
+        </Reveal>
       </div>
     </section>
   );

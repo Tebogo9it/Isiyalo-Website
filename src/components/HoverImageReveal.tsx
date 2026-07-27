@@ -48,23 +48,23 @@ interface HoverImageRevealProps {
 
 const DEFAULT_ITEMS_DATA: { text: string; src: string }[] = [
   {
-    text: "TRAUMA RECOVERY CIRCLES",
+    text: "PROTEA GLEN COMMUNITY",
     src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "PARENTING WORKSHOPS",
+    text: "SANDTON COMMUNITY",
     src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "RESILIENCE PROGRAMS",
+    text: "JOHANNESBURG COMMUNITY",
     src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "YOUTH MENTAL HEALTH",
+    text: "CAPETOWN COMMUNITY CARE",
     src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "SOWETO COMMUNITY CARE",
+    text: "ROSEBANK COMMUNITY CARE",
     src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop",
   },
 ];
@@ -123,7 +123,7 @@ const alignToText: Record<string, CSSProperties["textAlign"]> = {
 export default function HoverImageReveal({
   items = DEFAULT_ITEMS,
   font = DEFAULT_FONT,
-  textColor = "var(--foreground)",
+  textColor = "#FFFFFF",
   dimColor = "#FC72B9",
   align = "center",
   rowGap = 40,
