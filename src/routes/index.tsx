@@ -11,6 +11,7 @@ import BlurText from "@/components/BlurText";
 import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 import { PlaceCard } from "@/components/ui/card-22";
 import FallingSakura from "@/components/FallingSakura";
+import HoverImageReveal from "@/components/HoverImageReveal";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -426,60 +427,68 @@ function Services() {
 }
 
 function Community() {
+  const communityItems = {
+    itemCount: 5,
+    item1: {
+      text: "TRAUMA RECOVERY CIRCLES",
+      image: { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop", alt: "Trauma recovery circles" },
+    },
+    item2: {
+      text: "PARENTING WORKSHOPS",
+      image: { src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1000&auto=format&fit=crop", alt: "Parenting workshops" },
+    },
+    item3: {
+      text: "RESILIENCE & EMPOWERMENT",
+      image: { src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1000&auto=format&fit=crop", alt: "Resilience programs" },
+    },
+    item4: {
+      text: "YOUTH MENTAL HEALTH",
+      image: { src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=1000&auto=format&fit=crop", alt: "Youth mental health" },
+    },
+    item5: {
+      text: "SOWETO COMMUNITY CARE",
+      image: { src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop", alt: "Community outreach in Soweto" },
+    },
+  };
+
   return (
-    <section id="community" className="relative border-t border-border py-16 sm:py-28">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:gap-12 px-4 sm:px-6 md:grid-cols-2 md:items-center">
+    <section id="community" className="relative border-t border-border py-16 sm:py-28 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
-            <img
-              src={blossoms.url}
-              alt="Spring blossoms"
-              className="h-[300px] sm:h-[420px] md:h-[520px] w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
-              <div className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-white/80">
-                Isiyalo Wellness Centre · Estd 2023
-              </div>
-              <div className="mt-1 text-xs sm:text-sm text-white" style={{ fontFamily: "var(--font-body)" }}>
-                36204 Copper Street, Protea Glen Ext 35, Soweto
-              </div>
-            </div>
-          </div>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div>
+          <div className="text-center mb-10 sm:mb-14">
             <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
               § Community Engagement
             </div>
-            <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
+            <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl font-medium leading-[1.05] tracking-tight">
               Beyond private practice —
-              <span style={{ fontFamily: "var(--font-body)" }} className="italic">
-                {" "}
+              <br />
+              <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal">
                 a bridge to Soweto.
               </span>
             </h2>
             <p
-              className="mt-4 sm:mt-6 max-w-lg text-base sm:text-lg leading-relaxed text-muted-foreground"
+              className="mt-4 max-w-xl mx-auto text-base sm:text-lg leading-relaxed text-muted-foreground"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Isiyalo actively contributes to society by offering space and
-              expertise — sometimes free of charge — to support community mental
-              health initiatives, strengthening the professional ecosystem and
-              the wellbeing of families.
+              Isiyalo actively offers space and expertise to support community mental
+              health initiatives, strengthening families and wellbeing across Soweto.
             </p>
-            <ul className="mt-6 sm:mt-8 space-y-3">
-              {["Trauma recovery circles", "Parenting workshops", "Resilience programs"].map(
-                (t) => (
-                  <li key={t} className="flex items-center gap-3">
-                    <span className="h-px w-6 bg-foreground/40" />
-                    <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">{t}</span>
-                  </li>
-                ),
-              )}
-            </ul>
           </div>
         </Reveal>
+
+        <div className="w-full relative min-h-[450px] sm:min-h-[550px] flex items-center justify-center">
+          <HoverImageReveal
+            items={communityItems}
+            dimColor="#FC72B9"
+            rowGap={53}
+            imageWidth={400}
+            imageHeight={570}
+            rounded={43}
+            followStrength={8}
+            transition={{ mass: 1, type: "spring", damping: 40, stiffness: 400 }}
+            align="center"
+          />
+        </div>
       </div>
     </section>
   );
