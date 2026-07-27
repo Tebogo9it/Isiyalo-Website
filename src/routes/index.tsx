@@ -4,11 +4,13 @@ import heroBg from "@/assets/hero-bg.jpg.asset.json";
 import logo from "@/assets/isiyalo-logo.png";
 import rainWindow from "@/assets/rain-window.jpg.asset.json";
 import blossoms from "@/assets/blossoms.jpg";
-import heroVideo from "@/assets/Isiyalo hero.mp4";
+import heroVideo from "@/assets/sakura_hero_30s.mp4";
 import VariableProximity from "@/components/VariableProximity";
 import TrueFocus from "@/components/TrueFocus";
 import BlurText from "@/components/BlurText";
 import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
+import { PlaceCard } from "@/components/ui/card-22";
+import FallingSakura from "@/components/FallingSakura";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -54,7 +56,7 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#top" className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] font-semibold text-foreground hover:opacity-80 transition-opacity">
-          <img src={logo} alt="Isiyalo Logo" className="h-8 w-8 rounded-full object-cover border border-border" />
+          <img src={logo} alt="Isiyalo Logo" className="h-9 w-auto object-contain brightness-0" />
           <span>Isiyalo / Wellness</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
@@ -180,7 +182,7 @@ function Hero({ scrollY }: { scrollY: number }) {
           className="animate-fade-up mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg"
           style={{ fontFamily: "var(--font-body)", animationDelay: "0.5s" }}
         >
-          Practice support, counselling, and community mental health — held in a
+          Practice support, counselling, and community mental health, held in a
           welcoming space where care meets excellence.
         </p>
         <div
@@ -261,60 +263,10 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 function Statement() {
-  useEffect(() => {
-    let sakuraInstance: any = null;
-    let observer: IntersectionObserver | null = null;
-
-    const startSakura = () => {
-      if (sakuraInstance) return;
-      import("sakura-js").then((mod) => {
-        const Sakura = (mod as any).default?.default || (mod as any).default || mod;
-        if (typeof Sakura === "function") {
-          sakuraInstance = new Sakura("#our-statement", {
-            fallSpeed: 5.5,
-            minSize: 8,
-            maxSize: 12,
-            delay: 500,
-            colors: [
-              {
-                gradientColorStart: "rgba(255, 200, 221, 0.9)",
-                gradientColorEnd: "rgba(255, 220, 235, 0.9)",
-                gradientColorDegree: 120,
-              },
-            ],
-          });
-        }
-      });
-    };
-
-    const targetEl = document.querySelector("#our-statement");
-    if (targetEl) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              startSakura();
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-      observer.observe(targetEl);
-    } else {
-      startSakura();
-    }
-
-    return () => {
-      if (sakuraInstance) {
-        sakuraInstance.stop();
-        sakuraInstance = null;
-      }
-    };
-  }, []);
-
   return (
     <section id="our-statement" className="relative isolate overflow-hidden border-t border-border py-28">
       <span id="about" className="absolute -top-24" />
+      <FallingSakura petalCount={35} />
       {/* Background image */}
       <div
         className="absolute inset-0 -z-10 animate-shimmer"
@@ -324,10 +276,10 @@ function Statement() {
           backgroundPosition: "center",
         }}
       />
-      {/* Gradient overlay: clear on the top-right, fading to opaque background color on the left where the text is */}
+      {/* Gradient overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-transparent" />
 
-      <div className="mx-auto max-w-5xl px-6 text-left">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 text-left">
         <Reveal>
           <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
             § Our Statement
@@ -336,7 +288,7 @@ function Statement() {
         <Reveal delay={0.05}>
           <h2 className="mt-6 text-3xl leading-[1.2] tracking-tight text-foreground md:text-5xl font-medium max-w-4xl">
             <BlurText
-              text="We empower psychology practitioners through reliable onsite and remote administration — and we hold space for the community, freely, where it matters most."
+              text="We empower psychology practitioners through reliable onsite and remote administration and we hold space for the community, freely, where it matters most."
               delay={35}
               animateBy="words"
               direction="bottom"
@@ -361,34 +313,66 @@ function Statement() {
 }
 
 function Services() {
-  const services = [
+  const serviceCards = [
     {
-      n: "01",
       title: "Practice Administration",
-      subtitle: "Onsite & Remote Support",
-      body: "Reliable onsite and remote billing, scheduling, and administrative care for psychology practitioners.",
-      tag: "Admin & Operations",
+      hostType: "Onsite & Remote",
+      dateRange: "Mon - Sat Care",
+      rating: 5.0,
+      tags: ["Admin Support", "Billing & Scheduling"],
+      isTopRated: true,
+      description: "Reliable onsite and remote billing, client scheduling, and operational care tailored for psychology practitioners.",
+      pricePerNight: "Custom Plan",
+      images: [
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop",
+      ],
     },
     {
-      n: "02",
-      title: "Consulting Space",
-      subtitle: "Soweto Wellness Facility",
-      body: "A fully equipped, beautifully furnished environment designed specifically for mental health professionals.",
-      tag: "Workspaces",
+      title: "Consulting Spaces",
+      hostType: "Soweto Wellness Facility",
+      dateRange: "Flexible Suites",
+      rating: 4.9,
+      tags: ["Workspaces", "Private Rooms"],
+      isTopRated: true,
+      description: "A fully equipped, beautifully furnished environment designed specifically for mental health professionals.",
+      pricePerNight: "Hourly / Daily",
+      images: [
+        "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop",
+      ],
     },
     {
-      n: "03",
       title: "Clinical Counselling",
-      subtitle: "Individual, Couple & Family",
-      body: "Comprehensive clinical psychology and compassionate counselling tailored for individuals, couples, and families.",
-      tag: "Clinical Care",
+      hostType: "Licensed Practitioners",
+      dateRange: "By Appointment",
+      rating: 5.0,
+      tags: ["Individual & Family", "Clinical Care"],
+      isTopRated: true,
+      description: "Comprehensive clinical psychology and compassionate counselling tailored for individuals, couples, and families.",
+      pricePerNight: "Sliding Scale",
+      images: [
+        "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop",
+      ],
     },
     {
-      n: "04",
       title: "Workshops & Programs",
-      subtitle: "Community Mental Health",
-      body: "Impactful community programs and interactive workshops focusing on trauma recovery, parenting, and emotional resilience.",
-      tag: "Community Outreach",
+      hostType: "Community Outreach",
+      dateRange: "Monthly Sessions",
+      rating: 4.9,
+      tags: ["Trauma Recovery", "Resilience"],
+      isTopRated: false,
+      description: "Impactful community programs and interactive workshops focusing on trauma recovery, parenting, and emotional wellness.",
+      pricePerNight: "Community Care",
+      images: [
+        "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop",
+      ],
     },
   ];
 
@@ -402,7 +386,7 @@ function Services() {
       {/* Soft overlay so background image is fully visible and vibrant */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/20 to-background/50" />
 
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-7xl px-6">
         <Reveal>
           <div className="text-center">
             <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
@@ -418,44 +402,23 @@ function Services() {
           </div>
         </Reveal>
 
-        <div className="mt-12">
-          <ScrollStack useWindowScroll={true} itemDistance={50} itemStackDistance={30} baseScale={0.88} blurAmount={2}>
-            {services.map((s) => (
-              <ScrollStackItem key={s.n} itemClassName="border border-border/80 bg-card/95 backdrop-blur-md shadow-2xl overflow-hidden rounded-3xl p-8 md:p-12">
-                <div className="flex flex-col justify-between h-full">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-[0.24em] text-primary font-semibold">
-                      {s.n} — {s.tag}
-                    </span>
-                    <span className="rounded-full border border-border bg-secondary/80 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                      {s.subtitle}
-                    </span>
-                  </div>
-                  <div className="mt-6 md:mt-10">
-                    <h3 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground">{s.title}</h3>
-                    <p
-                      className="mt-4 max-w-2xl text-lg md:text-xl leading-relaxed text-muted-foreground"
-                      style={{ fontFamily: "var(--font-body)" }}
-                    >
-                      {s.body}
-                    </p>
-                  </div>
-                  <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-6">
-                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                      Isiyalo Practice Care
-                    </span>
-                    <a
-                      href="#contact"
-                      className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary font-semibold hover:underline"
-                    >
-                      <span>Inquire service</span>
-                      <span>→</span>
-                    </a>
-                  </div>
-                </div>
-              </ScrollStackItem>
-            ))}
-          </ScrollStack>
+        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">
+          {serviceCards.map((card, idx) => (
+            <PlaceCard
+              key={idx}
+              images={card.images}
+              tags={card.tags}
+              rating={card.rating}
+              title={card.title}
+              dateRange={card.dateRange}
+              hostType={card.hostType}
+              isTopRated={card.isTopRated}
+              description={card.description}
+              pricePerNight={card.pricePerNight}
+              buttonText="Inquire"
+              className="h-full max-w-full"
+            />
+          ))}
         </div>
       </div>
     </section>
