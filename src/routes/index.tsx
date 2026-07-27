@@ -431,23 +431,23 @@ function Community() {
   const communityItems = {
     itemCount: 5,
     item1: {
-      text: "PROTEA GLEN COMMUNITY",
+      text: "PROTEA GLEN ",
       image: { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop", alt: "Protea Glen Community" },
     },
     item2: {
-      text: "SANDTON COMMUNITY",
+      text: "SANDTON",
       image: { src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=800&auto=format&fit=crop", alt: "Sandton Community" },
     },
     item3: {
-      text: "JOHANNESBURG COMMUNITY",
+      text: "JOHANNESBURG ",
       image: { src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop", alt: "Johannesburg Community" },
     },
     item4: {
-      text: "CAPETOWN COMMUNITY CARE",
+      text: "CAPETOWN ",
       image: { src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800&auto=format&fit=crop", alt: "Capetown Community Care" },
     },
     item5: {
-      text: "ROSEBANK COMMUNITY CARE",
+      text: "ROSEBANK ",
       image: { src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop", alt: "Rosebank Community Care" },
     },
   };
@@ -470,17 +470,17 @@ function Community() {
               § Community Engagement
             </div>
             <h2 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-medium leading-[1.08] tracking-tight text-white max-w-4xl mx-auto">
-              Beyond private practice —
+              Beyond private practice
               <br />
               <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal text-pink-200">
-                a bridge to Soweto.
+                we are a bridge to Soweto.
               </span>
             </h2>
             <p
               className="mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-white/90"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Isiyalo actively offers space and expertise — free of charge — to support
+              Isiyalo actively offers space and expertise, to support
               community mental health initiatives, strengthening the professional ecosystem and
               the wellbeing of families across Soweto.
             </p>
@@ -504,7 +504,7 @@ function Community() {
 
         <Reveal delay={0.2}>
           <div className="mt-8 text-center font-mono text-xs uppercase tracking-[0.24em] text-white/70">
-            36204 Copper Street, Protea Glen Ext 35, Soweto · Estd 2023
+            36204 Copper Street, Protea Glen Ext 35
           </div>
         </Reveal>
       </div>
@@ -595,7 +595,7 @@ function Footer() {
             Isiyalo Management · Trading as Isiyalo Wellness
           </div>
           <div className="mt-1 text-xs sm:text-sm" style={{ fontFamily: "var(--font-body)" }}>
-            © {new Date().getFullYear()} — Soweto, South Africa.
+            © {new Date().getFullYear()}  Soweto, South Africa.
           </div>
         </div>
         <div className="flex flex-wrap gap-4 sm:gap-6 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">

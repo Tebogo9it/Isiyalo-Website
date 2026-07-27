@@ -48,23 +48,23 @@ interface HoverImageRevealProps {
 
 const DEFAULT_ITEMS_DATA: { text: string; src: string }[] = [
   {
-    text: "PROTEA GLEN COMMUNITY",
+    text: "PROTEA GLEN ",
     src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "SANDTON COMMUNITY",
+    text: "SANDTON ",
     src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "JOHANNESBURG COMMUNITY",
+    text: "JOHANNESBURG",
     src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "CAPETOWN COMMUNITY CARE",
+    text: "CAPETOWN ",
     src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800&auto=format&fit=crop",
   },
   {
-    text: "ROSEBANK COMMUNITY CARE",
+    text: "ROSEBANK ",
     src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop",
   },
 ];
@@ -95,8 +95,8 @@ const DEFAULT_ITEMS: ItemsValue = {
 
 const DEFAULT_FONT: FontValue = {
   fontFamily: "Inter",
-  fontWeight: 500,
-  fontSize: 48,
+  fontWeight: 300,
+  fontSize: 30,
   lineHeight: "1em",
   letterSpacing: "-0.04em",
   textAlign: "center",
@@ -124,7 +124,7 @@ export default function HoverImageReveal({
   items = DEFAULT_ITEMS,
   font = DEFAULT_FONT,
   textColor = "#FFFFFF",
-  dimColor = "#FC72B9",
+  dimColor = "#ee077eff",
   align = "center",
   rowGap = 40,
   imageWidth = 360,
