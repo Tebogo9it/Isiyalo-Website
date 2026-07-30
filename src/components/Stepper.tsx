@@ -257,29 +257,41 @@ function StepIndicator({
   onClickStep: (step: number) => void;
   disableStepIndicators?: boolean;
 }) {
-  const status = currentStep === step ? 'active' : currentStep < step ? 'inactive' : 'complete';
+  const status = currentStep === step ? "active" : currentStep < step ? "inactive" : "complete";
 
   const handleClick = () => {
     if (step !== currentStep && !disableStepIndicators) onClickStep(step);
   };
 
   return (
-    <motion.div onClick={handleClick} className="step-indicator" style={disableStepIndicators ? { pointerEvents: 'none', opacity: 0.5 } : {}} animate={status} initial={false}>
+    <motion.div
+      onClick={handleClick}
+      className="step-indicator"
+      style={disableStepIndicators ? { pointerEvents: "none", opacity: 0.5 } : {}}
+      animate={status}
+      initial={false}
+    >
       <motion.div
         variants={{
-          inactive: { scale: 1, backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'rgba(255, 255, 255, 0.5)' },
-          active: { scale: 1, backgroundColor: '#ffffff', color: '#0f0f11' },
-          complete: { scale: 1, backgroundColor: '#ffffff', color: '#0f0f11' }
+          inactive: {
+            scale: 1,
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            color: "rgba(255, 255, 255, 0.5)",
+          },
+          active: { scale: 1, backgroundColor: "#ffffff", color: "#0f0f11" },
+          complete: { scale: 1, backgroundColor: "#ffffff", color: "#0f0f11" },
         }}
         transition={{ duration: 0.3 }}
         className="step-indicator-inner"
       >
-        {status === 'complete' ? (
+        {status === "complete" ? (
           <CheckIcon className="check-icon" />
-        ) : status === 'active' ? (
+        ) : status === "active" ? (
           <div className="active-dot" />
         ) : (
-          <span className="step-number" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{step}</span>
+          <span className="step-number" style={{ color: "rgba(255, 255, 255, 0.6)" }}>
+            {step}
+          </span>
         )}
       </motion.div>
     </motion.div>
@@ -288,8 +300,8 @@ function StepIndicator({
 
 function StepConnector({ isComplete }: { isComplete: boolean }) {
   const lineVariants = {
-    incomplete: { width: 0, backgroundColor: 'transparent' },
-    complete: { width: '100%', backgroundColor: '#ffffff' }
+    incomplete: { width: 0, backgroundColor: "transparent" },
+    complete: { width: "100%", backgroundColor: "#ffffff" },
   };
 
   return (
@@ -298,7 +310,7 @@ function StepConnector({ isComplete }: { isComplete: boolean }) {
         className="step-connector-inner"
         variants={lineVariants}
         initial={false}
-        animate={isComplete ? 'complete' : 'incomplete'}
+        animate={isComplete ? "complete" : "incomplete"}
         transition={{ duration: 0.4 }}
       />
     </div>

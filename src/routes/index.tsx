@@ -18,6 +18,7 @@ import Galaxy from "@/components/Galaxy";
 import DotField from "@/components/DotField";
 import Stepper, { Step } from "@/components/Stepper";
 import GooeyNav from "@/components/GooeyNav";
+import AnimatedContent from "@/components/AnimatedContent";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -429,7 +430,13 @@ function Services() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/20 to-background/50" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <Reveal>
+        <AnimatedContent
+          distance={80}
+          direction="vertical"
+          duration={1.0}
+          ease="power3.out"
+          threshold={0.1}
+        >
           <div className="text-center">
             <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
               § Core Services
@@ -442,24 +449,34 @@ function Services() {
               </span>
             </h2>
           </div>
-        </Reveal>
+        </AnimatedContent>
 
         <div className="mt-10 sm:mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 justify-items-center w-full">
           {serviceCards.map((card, idx) => (
-            <PlaceCard
+            <AnimatedContent
               key={idx}
-              images={card.images}
-              tags={card.tags}
-              rating={card.rating}
-              title={card.title}
-              dateRange={card.dateRange}
-              hostType={card.hostType}
-              isTopRated={card.isTopRated}
-              description={card.description}
-              pricePerNight={card.pricePerNight}
-              buttonText="Inquire"
-              className="h-full max-w-full"
-            />
+              distance={100}
+              direction="vertical"
+              delay={idx * 0.15}
+              duration={0.9}
+              ease="power3.out"
+              threshold={0.1}
+              className="w-full"
+            >
+              <PlaceCard
+                images={card.images}
+                tags={card.tags}
+                rating={card.rating}
+                title={card.title}
+                dateRange={card.dateRange}
+                hostType={card.hostType}
+                isTopRated={card.isTopRated}
+                description={card.description}
+                pricePerNight={card.pricePerNight}
+                buttonText="Inquire"
+                className="h-full max-w-full"
+              />
+            </AnimatedContent>
           ))}
         </div>
       </div>
