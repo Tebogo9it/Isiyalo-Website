@@ -622,18 +622,31 @@ function Contact() {
       />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-        <Reveal>
+        <AnimatedContent
+          distance={100}
+          direction="vertical"
+          duration={1.0}
+          ease="power3.out"
+          threshold={0.1}
+          delay={0.1}
+        >
           <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-slate-700 font-semibold">
             § Reach Out
           </div>
-        </Reveal>
-        <Reveal delay={0.05}>
           <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl tracking-tight font-medium text-slate-900">
             Begin the conversation.
           </h2>
-        </Reveal>
+        </AnimatedContent>
 
-        <div className="mt-8 sm:mt-12 text-left">
+        <AnimatedContent
+          distance={120}
+          direction="vertical"
+          delay={0.25}
+          duration={1.1}
+          ease="power3.out"
+          threshold={0.1}
+          className="mt-8 sm:mt-12 text-left"
+        >
           <Stepper
             initialStep={1}
             backButtonText="Previous"
@@ -748,7 +761,7 @@ function Contact() {
               </div>
             </Step>
           </Stepper>
-        </div>
+        </AnimatedContent>
       </div>
     </section>
   );
