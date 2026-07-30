@@ -649,7 +649,7 @@ function Contact() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Full Name"
-                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
+                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
                   />
                   <input
                     required
@@ -657,7 +657,7 @@ function Contact() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="Email Address"
-                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
+                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
                   />
                 </div>
                 <input
@@ -665,7 +665,7 @@ function Contact() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="Phone Number (Optional)"
-                  className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
+                  className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
                 />
               </div>
             </Step>
@@ -692,7 +692,7 @@ function Contact() {
                       onClick={() => setFormData({ ...formData, service })}
                       className={`rounded-xl border p-3.5 text-left text-xs font-mono tracking-wider transition ${
                         formData.service === service
-                          ? "border-pink-300 bg-pink-500/20 text-white font-semibold shadow-[0_0_15px_rgba(244,114,182,0.3)]"
+                          ? "border-white bg-white text-neutral-900 font-semibold shadow-[0_0_20px_rgba(255,255,255,0.35)]"
                           : "border-white/15 bg-white/5 text-white/70 hover:border-white/40 hover:text-white"
                       }`}
                     >
@@ -718,14 +718,14 @@ function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="How can we support you?"
-                  className="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
+                  className="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
                 />
               </div>
             </Step>
 
             <Step>
               <div className="py-4 text-center space-y-3">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-500/20 text-pink-300 text-xl font-bold border border-pink-300/40 shadow-[0_0_15px_rgba(244,114,182,0.3)]">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white text-neutral-900 text-xl font-bold border border-white shadow-[0_0_20px_rgba(255,255,255,0.35)]">
                   ✓
                 </div>
                 <h3 className="text-2xl font-medium text-white">Ready to Send!</h3>
@@ -735,7 +735,7 @@ function Contact() {
                 >
                   Click Complete below to launch your email client or reach out directly via:
                 </p>
-                <div className="font-mono text-xs uppercase tracking-[0.2em] text-pink-300 pt-2">
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-white pt-2">
                   +27 81 346 8914 · isiyalowellnesscentre@gmail.com
                 </div>
               </div>
