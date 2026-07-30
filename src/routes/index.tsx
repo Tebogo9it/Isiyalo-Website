@@ -29,6 +29,18 @@ import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        href: reachOutBg,
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: coreServeBg,
+      },
+    ],
     meta: [
       {
         property: "og:image",
@@ -652,7 +664,9 @@ function Contact() {
             backButtonText="Previous"
             nextButtonText="Continue"
             onFinalStepCompleted={handleSubmit}
-            stepCircleContainerClassName="bg-white/90 border border-slate-200/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+            stepCircleContainerClassName="!bg-white/95 !border-slate-200/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+            backButtonProps={{ className: "!border-slate-300 !text-slate-800 hover:!bg-slate-100" }}
+            nextButtonProps={{ className: "!bg-slate-900 !text-white hover:!bg-slate-800" }}
           >
             <Step>
               <div className="space-y-4 py-2">
