@@ -17,6 +17,7 @@ import Particles from "@/components/Particles";
 import Galaxy from "@/components/Galaxy";
 import DotField from "@/components/DotField";
 import Stepper, { Step } from "@/components/Stepper";
+import GooeyNav from "@/components/GooeyNav";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -65,17 +66,17 @@ function Nav() {
           <img src={logo} alt="Isiyalo Logo" className="h-8 sm:h-9 w-auto object-contain brightness-0" />
           <span>Isiyalo<span className="hidden xs:inline sm:inline"> Wellness</span></span>
         </a>
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
+        <div className="hidden md:block">
+          <GooeyNav
+            items={links}
+            particleCount={15}
+            particleDistances={[90, 10]}
+            particleR={100}
+            initialActiveIndex={0}
+            animationTime={600}
+            timeVariance={300}
+          />
+        </div>
         <a
           href="#contact"
           className="hidden rounded-full bg-primary px-5 py-2.5 font-mono text-xs uppercase tracking-[0.2em] text-primary-foreground shadow transition hover:bg-primary/90 md:inline-flex"
