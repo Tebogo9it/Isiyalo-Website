@@ -21,6 +21,7 @@ import GooeyNav from "@/components/GooeyNav";
 import AnimatedContent from "@/components/AnimatedContent";
 import InstagramFillIcon from "@/components/InstagramFillIcon";
 import StarfieldBackground from "@/components/StarfieldBackground";
+import reachOutBg from "@/assets/reachout.jpg";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -529,34 +530,32 @@ function Community() {
   return (
     <section
       id="community"
-      className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-white"
+      className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-[#0a0a0f]"
     >
-      {/* Full background image - white textured plaster with eucalyptus leaves */}
-      <div
-        className="absolute inset-0 -z-20 h-full w-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${communityBg})` }}
-      />
-      {/* Subtle translucent tint for optimal readability while keeping texture vibrant */}
-      <div className="absolute inset-0 -z-10 bg-white/40 backdrop-blur-[0.5px] pointer-events-none" />
+      {/* Dynamic Starfield Canvas Background */}
+      <div className="absolute inset-0 -z-20">
+        <StarfieldBackground count={400} speed={0.5} starColor="#ffffff" twinkle />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-black/40 pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
           <div className="text-center mb-8 sm:mb-10">
-            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-slate-700 font-semibold">
+            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-white/80">
               § Community Engagement
             </div>
-            <h2 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-medium leading-[1.08] tracking-tight text-slate-900 max-w-4xl mx-auto">
+            <h2 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-medium leading-[1.08] tracking-tight text-white max-w-4xl mx-auto">
               Beyond private practice
               <br />
               <span
                 style={{ fontFamily: "var(--font-body)" }}
-                className="italic font-normal text-emerald-800"
+                className="italic font-normal text-pink-200"
               >
                 we are a bridge to Soweto.
               </span>
             </h2>
             <p
-              className="mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-700"
+              className="mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-white/90"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Isiyalo actively offers space and expertise, to support community mental health
@@ -569,8 +568,8 @@ function Community() {
         <div className="w-full relative min-h-[420px] sm:min-h-[500px] flex items-center justify-center">
           <HoverImageReveal
             items={communityItems}
-            textColor="#0F172A"
-            dimColor="#047857"
+            textColor="#FFFFFF"
+            dimColor="#FC72B9"
             rowGap={40}
             imageWidth={360}
             imageHeight={480}
@@ -582,7 +581,7 @@ function Community() {
         </div>
 
         <Reveal delay={0.2}>
-          <div className="mt-8 text-center font-mono text-xs uppercase tracking-[0.24em] text-slate-700 font-medium">
+          <div className="mt-8 text-center font-mono text-xs uppercase tracking-[0.24em] text-white/70">
             36204 Copper Street, Protea Glen Ext 35
           </div>
         </Reveal>
@@ -611,21 +610,22 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28 bg-[#0a0a0f]"
+      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
     >
-      <div className="absolute inset-0 -z-20">
-        <StarfieldBackground count={400} speed={0.5} starColor="#ffffff" twinkle />
-      </div>
-      <div className="absolute inset-0 -z-10 bg-black/40 pointer-events-none" />
+      {/* Full background image - reachout.jpg with zero overlay or blur */}
+      <div
+        className="absolute inset-0 -z-20 h-full w-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${reachOutBg})` }}
+      />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <Reveal>
-          <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+          <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-slate-700 font-semibold">
             § Reach Out
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl tracking-tight font-medium">
+          <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl tracking-tight font-medium text-slate-900">
             Begin the conversation.
           </h2>
         </Reveal>
@@ -636,13 +636,13 @@ function Contact() {
             backButtonText="Previous"
             nextButtonText="Continue"
             onFinalStepCompleted={handleSubmit}
-            stepCircleContainerClassName="bg-[#121215]/90 border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+            stepCircleContainerClassName="bg-white/90 border border-slate-200/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
           >
             <Step>
               <div className="space-y-4 py-2">
-                <h3 className="text-xl font-medium text-white">1. Your Contact Details</h3>
+                <h3 className="text-xl font-medium text-slate-900">1. Your Contact Details</h3>
                 <p
-                  className="text-xs sm:text-sm text-white/70"
+                  className="text-xs sm:text-sm text-slate-700"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Please share your details so we can get back to you promptly.
@@ -653,7 +653,7 @@ function Contact() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Full Name"
-                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
+                    className="w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-slate-800/40"
                   />
                   <input
                     required
@@ -661,7 +661,7 @@ function Contact() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="Email Address"
-                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
+                    className="w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-slate-800/40"
                   />
                 </div>
                 <input
@@ -669,16 +669,16 @@ function Contact() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="Phone Number (Optional)"
-                  className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
+                  className="w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-slate-800/40"
                 />
               </div>
             </Step>
 
             <Step>
               <div className="space-y-4 py-2">
-                <h3 className="text-xl font-medium text-white">2. Select a Service</h3>
+                <h3 className="text-xl font-medium text-slate-900">2. Select a Service</h3>
                 <p
-                  className="text-xs sm:text-sm text-white/70"
+                  className="text-xs sm:text-sm text-slate-700"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Which service or inquiry type are you looking for?
@@ -696,8 +696,8 @@ function Contact() {
                       onClick={() => setFormData({ ...formData, service })}
                       className={`rounded-xl border p-3.5 text-left text-xs font-mono tracking-wider transition ${
                         formData.service === service
-                          ? "border-white bg-white text-neutral-900 font-semibold shadow-[0_0_20px_rgba(255,255,255,0.35)]"
-                          : "border-white/15 bg-white/5 text-white/70 hover:border-white/40 hover:text-white"
+                          ? "border-slate-900 bg-slate-900 text-white font-semibold shadow-md"
+                          : "border-slate-200 bg-white/60 text-slate-700 hover:border-slate-400 hover:text-slate-900"
                       }`}
                     >
                       {service}
@@ -709,9 +709,9 @@ function Contact() {
 
             <Step>
               <div className="space-y-4 py-2">
-                <h3 className="text-xl font-medium text-white">3. Your Message</h3>
+                <h3 className="text-xl font-medium text-slate-900">3. Your Message</h3>
                 <p
-                  className="text-xs sm:text-sm text-white/70"
+                  className="text-xs sm:text-sm text-slate-700"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Tell us a bit about how we can support you.
@@ -722,24 +722,24 @@ function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="How can we support you?"
-                  className="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-white focus:ring-1 focus:ring-white/40"
+                  className="w-full rounded-2xl border border-slate-300 bg-white/80 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-slate-800/40"
                 />
               </div>
             </Step>
 
             <Step>
               <div className="py-4 text-center space-y-3">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white text-neutral-900 text-xl font-bold border border-white shadow-[0_0_20px_rgba(255,255,255,0.35)]">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-white text-xl font-bold border border-slate-900 shadow-md">
                   ✓
                 </div>
-                <h3 className="text-2xl font-medium text-white">Ready to Send!</h3>
+                <h3 className="text-2xl font-medium text-slate-900">Ready to Send!</h3>
                 <p
-                  className="text-sm text-white/80 max-w-md mx-auto"
+                  className="text-sm text-slate-700 max-w-md mx-auto"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Click Complete below to launch your email client or reach out directly via:
                 </p>
-                <div className="font-mono text-xs uppercase tracking-[0.2em] text-white pt-2">
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-900 font-semibold pt-2">
                   +27 81 346 8914 · isiyalowellnesscentre@gmail.com
                 </div>
               </div>
