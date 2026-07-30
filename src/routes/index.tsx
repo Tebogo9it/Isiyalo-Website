@@ -551,7 +551,7 @@ function Community() {
               <br />
               <span
                 style={{ fontFamily: "var(--font-body)" }}
-                className="italic font-normal text-pink-200"
+                className="italic font-normal text-white"
               >
                 we are a bridge to Soweto.
               </span>
