@@ -15,6 +15,7 @@ import HoverImageReveal from "@/components/HoverImageReveal";
 import communityBg from "@/assets/community-bg.jpg";
 import Particles from "@/components/Particles";
 import Galaxy from "@/components/Galaxy";
+import DotField from "@/components/DotField";
 import Stepper, { Step } from "@/components/Stepper";
 import "sakura-js/dist/sakura.css";
 
@@ -457,21 +458,24 @@ function Community() {
   };
 
   return (
-    <section id="community" className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-black">
-      {/* Interactive Galaxy Background */}
+    <section id="community" className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-[#0b090e]">
+      {/* Interactive DotField Background */}
       <div className="absolute inset-0 -z-20 h-full w-full">
-        <Galaxy
-          mouseRepulsion={true}
-          mouseInteraction={true}
-          density={1.5}
-          glowIntensity={0.5}
-          saturation={0.8}
-          hueShift={240}
-          transparent={true}
+        <DotField
+          dotRadius={1.5}
+          dotSpacing={15}
+          bulgeStrength={67}
+          glowRadius={160}
+          sparkle
+          waveAmplitude={0}
+          cursorForce={0.15}
+          gradientFrom="rgba(244, 114, 182, 0.45)"
+          gradientTo="rgba(255, 255, 255, 0.2)"
+          glowColor="#120F17"
         />
       </div>
       {/* Soft atmospheric overlay */}
-      <div className="absolute inset-0 -z-10 bg-black/40 pointer-events-none" />
+      <div className="absolute inset-0 -z-10 bg-black/30 pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
