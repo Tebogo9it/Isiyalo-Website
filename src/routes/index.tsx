@@ -529,25 +529,15 @@ function Community() {
   return (
     <section
       id="community"
-      className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-[#0b090e]"
+      className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28"
     >
-      {/* Interactive DotField Background */}
-      <div className="absolute inset-0 -z-20 h-full w-full">
-        <DotField
-          dotRadius={1.5}
-          dotSpacing={15}
-          bulgeStrength={67}
-          glowRadius={160}
-          sparkle
-          waveAmplitude={0}
-          cursorForce={0.15}
-          gradientFrom="rgba(244, 114, 182, 0.45)"
-          gradientTo="rgba(255, 255, 255, 0.2)"
-          glowColor="#120F17"
-        />
-      </div>
-      {/* Soft atmospheric overlay */}
-      <div className="absolute inset-0 -z-10 bg-black/30 pointer-events-none" />
+      {/* Full background image - white textured plaster with eucalyptus leaves */}
+      <div
+        className="absolute inset-0 -z-20 h-full w-full bg-cover bg-center bg-no-repeat animate-shimmer"
+        style={{ backgroundImage: `url(${communityBg})` }}
+      />
+      {/* Overlay to ensure maximum contrast and legibility */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/60 via-black/40 to-black/60 backdrop-blur-[1px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
