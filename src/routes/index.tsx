@@ -13,6 +13,8 @@ import { PlaceCard } from "@/components/ui/card-22";
 import FallingSakura from "@/components/FallingSakura";
 import HoverImageReveal from "@/components/HoverImageReveal";
 import communityBg from "@/assets/community-bg.jpg";
+import Particles from "@/components/Particles";
+import Galaxy from "@/components/Galaxy";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -117,31 +119,32 @@ function Hero({ scrollY }: { scrollY: number }) {
   const containerRef = useRef<HTMLElement>(null);
 
   return (
-    <section ref={containerRef} id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
-      {/* Background — video playing in loop */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster={heroBg.url}
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
-        style={{
-          transform: `translate3d(0, ${scrollY * 0.15}px, 0) scale(1.08)`,
-        }}
-      >
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+    <section ref={containerRef} id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden bg-black">
+      {/* Interactive Particles Background */}
+      <div className="absolute inset-0 -z-10 h-full w-full">
+        <Particles
+          particleColors={["#ffffff", "#fbcfe8", "#ffffff"]}
+          particleCount={250}
+          particleSpread={12}
+          speed={0.12}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          particleHoverFactor={1.2}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
+
       {/* Atmospheric wash */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/35 via-black/15 to-background" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,transparent_0%,rgba(0,0,0,0.2)_70%)]" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/50 via-transparent to-background pointer-events-none" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.5)_80%)] pointer-events-none" />
 
       {/* Logo — top center just below navbar */}
       <div className="pointer-events-none absolute inset-x-0 top-16 sm:top-20 z-20 flex justify-center">
         <img
           src={logo}
           alt="Isiyalo Wellness Centre"
-          className="h-20 sm:h-28 w-auto animate-mask-reveal opacity-95 drop-shadow-[0_2px_20px_rgba(0,0,0,0.25)] md:h-40"
+          className="h-20 sm:h-28 w-auto animate-mask-reveal opacity-95 drop-shadow-[0_2px_20px_rgba(255,255,255,0.15)] md:h-40"
         />
       </div>
 
@@ -453,15 +456,21 @@ function Community() {
   };
 
   return (
-    <section id="community" className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28">
-      {/* Background picture filling the section with zero blur */}
-      <img
-        src={communityBg}
-        alt="Community background blossoms"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-      />
-      {/* Minimal overlay so the picture is vibrant and text on top is crisp */}
-      <div className="absolute inset-0 -z-10 bg-black/35" />
+    <section id="community" className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-black">
+      {/* Interactive Galaxy Background */}
+      <div className="absolute inset-0 -z-20 h-full w-full">
+        <Galaxy
+          mouseRepulsion={true}
+          mouseInteraction={true}
+          density={1.5}
+          glowIntensity={0.5}
+          saturation={0.8}
+          hueShift={240}
+          transparent={true}
+        />
+      </div>
+      {/* Soft atmospheric overlay */}
+      <div className="absolute inset-0 -z-10 bg-black/40 pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
