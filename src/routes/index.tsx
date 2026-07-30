@@ -19,6 +19,7 @@ import DotField from "@/components/DotField";
 import Stepper, { Step } from "@/components/Stepper";
 import GooeyNav from "@/components/GooeyNav";
 import AnimatedContent from "@/components/AnimatedContent";
+import InstagramFillIcon from "@/components/InstagramFillIcon";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -776,15 +777,16 @@ function Footer() {
             © {new Date().getFullYear()} Soweto, South Africa.
           </div>
         </div>
-        <div className="flex flex-wrap gap-4 sm:gap-6 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">
-          <a href="#" className="hover:opacity-70">
-            Isiyalo Wellness
-          </a>
-          <a href="#" className="hover:opacity-70">
-            Isiyalo_Wellness
-          </a>
-          <a href="#" className="hover:opacity-70">
-            Isiyalo_Overflow
+        <div className="flex items-center gap-6 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">
+          <a
+            href="https://www.instagram.com/isiyalo_wellness/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-foreground transition hover:border-white/60 hover:bg-white/10 hover:text-white shadow-sm"
+            aria-label="Instagram @isiyalo_wellness"
+          >
+            <InstagramFillIcon size={18} color="currentColor" />
+            <span>@isiyalo_wellness</span>
           </a>
         </div>
       </div>
