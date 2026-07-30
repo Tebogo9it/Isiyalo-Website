@@ -529,34 +529,34 @@ function Community() {
   return (
     <section
       id="community"
-      className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28"
+      className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-white"
     >
       {/* Full background image - white textured plaster with eucalyptus leaves */}
       <div
-        className="absolute inset-0 -z-20 h-full w-full bg-cover bg-center bg-no-repeat animate-shimmer"
+        className="absolute inset-0 -z-20 h-full w-full bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${communityBg})` }}
       />
-      {/* Overlay to ensure maximum contrast and legibility */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/60 via-black/40 to-black/60 backdrop-blur-[1px] pointer-events-none" />
+      {/* Subtle translucent tint for optimal readability while keeping texture vibrant */}
+      <div className="absolute inset-0 -z-10 bg-white/40 backdrop-blur-[0.5px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
           <div className="text-center mb-8 sm:mb-10">
-            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-white/80">
+            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-slate-700 font-semibold">
               § Community Engagement
             </div>
-            <h2 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-medium leading-[1.08] tracking-tight text-white max-w-4xl mx-auto">
+            <h2 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-medium leading-[1.08] tracking-tight text-slate-900 max-w-4xl mx-auto">
               Beyond private practice
               <br />
               <span
                 style={{ fontFamily: "var(--font-body)" }}
-                className="italic font-normal text-pink-200"
+                className="italic font-normal text-emerald-800"
               >
                 we are a bridge to Soweto.
               </span>
             </h2>
             <p
-              className="mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-white/90"
+              className="mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-700"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Isiyalo actively offers space and expertise, to support community mental health
@@ -569,8 +569,8 @@ function Community() {
         <div className="w-full relative min-h-[420px] sm:min-h-[500px] flex items-center justify-center">
           <HoverImageReveal
             items={communityItems}
-            textColor="#FFFFFF"
-            dimColor="#FC72B9"
+            textColor="#0F172A"
+            dimColor="#047857"
             rowGap={40}
             imageWidth={360}
             imageHeight={480}
@@ -582,7 +582,7 @@ function Community() {
         </div>
 
         <Reveal delay={0.2}>
-          <div className="mt-8 text-center font-mono text-xs uppercase tracking-[0.24em] text-white/70">
+          <div className="mt-8 text-center font-mono text-xs uppercase tracking-[0.24em] text-slate-700 font-medium">
             36204 Copper Street, Protea Glen Ext 35
           </div>
         </Reveal>
