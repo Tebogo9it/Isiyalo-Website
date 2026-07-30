@@ -20,6 +20,8 @@ import Stepper, { Step } from "@/components/Stepper";
 import GooeyNav from "@/components/GooeyNav";
 import AnimatedContent from "@/components/AnimatedContent";
 import InstagramFillIcon from "@/components/InstagramFillIcon";
+import FacebookFillIcon from "@/components/FacebookFillIcon";
+import YoutubeFillIcon from "@/components/YoutubeFillIcon";
 import StarfieldBackground from "@/components/StarfieldBackground";
 import reachOutBg from "@/assets/reachout.jpg";
 import "sakura-js/dist/sakura.css";
@@ -763,16 +765,36 @@ function Footer() {
             © {new Date().getFullYear()} Soweto, South Africa.
           </div>
         </div>
-        <div className="flex items-center gap-6 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">
+          <a
+            href="https://web.facebook.com/Isiyalowellnesscentre"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-foreground transition hover:border-white/60 hover:bg-white/10 hover:text-white shadow-sm"
+            aria-label="Facebook Isiyalowellnesscentre"
+          >
+            <FacebookFillIcon size={18} color="currentColor" />
+            <span>Facebook</span>
+          </a>
           <a
             href="https://www.instagram.com/isiyalo_wellness/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-foreground transition hover:border-white/60 hover:bg-white/10 hover:text-white shadow-sm"
+            className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-foreground transition hover:border-white/60 hover:bg-white/10 hover:text-white shadow-sm"
             aria-label="Instagram @isiyalo_wellness"
           >
             <InstagramFillIcon size={18} color="currentColor" />
-            <span>@isiyalo_wellness</span>
+            <span>Instagram</span>
+          </a>
+          <a
+            href="https://www.youtube.com/@IsiyaloOverflow/videos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-foreground transition hover:border-white/60 hover:bg-white/10 hover:text-white shadow-sm"
+            aria-label="YouTube @IsiyaloOverflow"
+          >
+            <YoutubeFillIcon size={18} color="currentColor" />
+            <span>YouTube</span>
           </a>
         </div>
       </div>
