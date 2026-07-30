@@ -23,8 +23,16 @@ import "sakura-js/dist/sakura.css";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { property: "og:image", content: "https://id-preview--2ac72736-7108-4f90-85f5-7311291590e0.lovable.app" + heroBg.url },
-      { name: "twitter:image", content: "https://id-preview--2ac72736-7108-4f90-85f5-7311291590e0.lovable.app" + heroBg.url },
+      {
+        property: "og:image",
+        content:
+          "https://id-preview--2ac72736-7108-4f90-85f5-7311291590e0.lovable.app" + heroBg.url,
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://id-preview--2ac72736-7108-4f90-85f5-7311291590e0.lovable.app" + heroBg.url,
+      },
     ],
   }),
   component: Index,
@@ -62,9 +70,18 @@ function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
-        <a href="#top" className="flex items-center gap-2.5 sm:gap-3 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground hover:opacity-80 transition-opacity">
-          <img src={logo} alt="Isiyalo Logo" className="h-8 sm:h-9 w-auto object-contain brightness-0" />
-          <span>Isiyalo<span className="hidden xs:inline sm:inline"> Wellness</span></span>
+        <a
+          href="#top"
+          className="flex items-center gap-2.5 sm:gap-3 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground hover:opacity-80 transition-opacity"
+        >
+          <img
+            src={logo}
+            alt="Isiyalo Logo"
+            className="h-8 sm:h-9 w-auto object-contain brightness-0"
+          />
+          <span>
+            Isiyalo<span className="hidden xs:inline sm:inline"> Wellness</span>
+          </span>
         </a>
         <div className="hidden md:block">
           <GooeyNav
@@ -122,7 +139,11 @@ function Hero({ scrollY }: { scrollY: number }) {
   const containerRef = useRef<HTMLElement>(null);
 
   return (
-    <section ref={containerRef} id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden bg-black">
+    <section
+      ref={containerRef}
+      id="top"
+      className="relative isolate min-h-[100svh] w-full overflow-hidden bg-black"
+    >
       {/* Interactive Particles Background */}
       <div className="absolute inset-0 -z-10 h-full w-full">
         <Particles
@@ -190,8 +211,8 @@ function Hero({ scrollY }: { scrollY: number }) {
           className="animate-fade-up mt-4 sm:mt-6 max-w-xl text-sm sm:text-base leading-relaxed text-white/85 md:text-lg"
           style={{ fontFamily: "var(--font-body)", animationDelay: "0.5s" }}
         >
-          Practice support, counselling, and community mental health, held in a
-          welcoming space where care meets excellence.
+          Practice support, counselling, and community mental health, held in a welcoming space
+          where care meets excellence.
         </p>
         <div
           className="animate-fade-up mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto px-4 sm:px-0"
@@ -223,8 +244,13 @@ function Hero({ scrollY }: { scrollY: number }) {
             ["04 —", "Workshops"],
           ].map(([n, t]) => (
             <div key={t}>
-              <div className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-white/70">{n}</div>
-              <div className="mt-1 text-xs sm:text-sm text-white" style={{ fontFamily: "var(--font-body)" }}>
+              <div className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-white/70">
+                {n}
+              </div>
+              <div
+                className="mt-1 text-xs sm:text-sm text-white"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
                 <TrueFocus
                   sentence={t}
                   manualMode={false}
@@ -249,10 +275,9 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setVisible(true),
-      { threshold: 0.15 },
-    );
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), {
+      threshold: 0.15,
+    });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -272,7 +297,10 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 function Statement() {
   return (
-    <section id="our-statement" className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28">
+    <section
+      id="our-statement"
+      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
+    >
       <span id="about" className="absolute -top-24" />
       <FallingSakura petalCount={35} />
       {/* Background image */}
@@ -309,10 +337,9 @@ function Statement() {
             className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Isiyalo Wellness Centre in Soweto is a welcoming, fully furnished
-            home for professionals delivering quality mental health care. We
-            believe support should be accessible, compassionate, and rooted in
-            excellence.
+            Isiyalo Wellness Centre in Soweto is a welcoming, fully furnished home for professionals
+            delivering quality mental health care. We believe support should be accessible,
+            compassionate, and rooted in excellence.
           </p>
         </Reveal>
       </div>
@@ -329,7 +356,8 @@ function Services() {
       rating: 5.0,
       tags: ["Admin Support", "Billing & Scheduling"],
       isTopRated: true,
-      description: "Reliable onsite and remote billing, client scheduling, and operational care tailored for psychology practitioners.",
+      description:
+        "Reliable onsite and remote billing, client scheduling, and operational care tailored for psychology practitioners.",
       pricePerNight: "Custom Plan",
       images: [
         "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
@@ -344,7 +372,8 @@ function Services() {
       rating: 4.9,
       tags: ["Workspaces", "Private Rooms"],
       isTopRated: true,
-      description: "A fully equipped, beautifully furnished environment designed specifically for mental health professionals.",
+      description:
+        "A fully equipped, beautifully furnished environment designed specifically for mental health professionals.",
       pricePerNight: "Hourly / Daily",
       images: [
         "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?q=80&w=1200&auto=format&fit=crop",
@@ -359,7 +388,8 @@ function Services() {
       rating: 5.0,
       tags: ["Individual & Family", "Clinical Care"],
       isTopRated: true,
-      description: "Comprehensive clinical psychology and compassionate counselling tailored for individuals, couples, and families.",
+      description:
+        "Comprehensive clinical psychology and compassionate counselling tailored for individuals, couples, and families.",
       pricePerNight: "Sliding Scale",
       images: [
         "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop",
@@ -374,7 +404,8 @@ function Services() {
       rating: 4.9,
       tags: ["Trauma Recovery", "Resilience"],
       isTopRated: false,
-      description: "Impactful community programs and interactive workshops focusing on trauma recovery, parenting, and emotional wellness.",
+      description:
+        "Impactful community programs and interactive workshops focusing on trauma recovery, parenting, and emotional wellness.",
       pricePerNight: "Community Care",
       images: [
         "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1200&auto=format&fit=crop",
@@ -385,7 +416,10 @@ function Services() {
   ];
 
   return (
-    <section id="services" className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28">
+    <section
+      id="services"
+      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
+    >
       {/* Full background image */}
       <div
         className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat animate-shimmer"
@@ -438,28 +472,46 @@ function Community() {
     itemCount: 5,
     item1: {
       text: "PROTEA GLEN ",
-      image: { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop", alt: "Protea Glen Community" },
+      image: {
+        src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop",
+        alt: "Protea Glen Community",
+      },
     },
     item2: {
       text: "SANDTON",
-      image: { src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=800&auto=format&fit=crop", alt: "Sandton Community" },
+      image: {
+        src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=800&auto=format&fit=crop",
+        alt: "Sandton Community",
+      },
     },
     item3: {
       text: "JOHANNESBURG ",
-      image: { src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop", alt: "Johannesburg Community" },
+      image: {
+        src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop",
+        alt: "Johannesburg Community",
+      },
     },
     item4: {
       text: "CAPETOWN ",
-      image: { src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800&auto=format&fit=crop", alt: "Capetown Community Care" },
+      image: {
+        src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800&auto=format&fit=crop",
+        alt: "Capetown Community Care",
+      },
     },
     item5: {
       text: "ROSEBANK ",
-      image: { src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop", alt: "Rosebank Community Care" },
+      image: {
+        src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop",
+        alt: "Rosebank Community Care",
+      },
     },
   };
 
   return (
-    <section id="community" className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-[#0b090e]">
+    <section
+      id="community"
+      className="relative isolate overflow-hidden border-t border-border py-20 sm:py-28 bg-[#0b090e]"
+    >
       {/* Interactive DotField Background */}
       <div className="absolute inset-0 -z-20 h-full w-full">
         <DotField
@@ -487,7 +539,10 @@ function Community() {
             <h2 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-medium leading-[1.08] tracking-tight text-white max-w-4xl mx-auto">
               Beyond private practice
               <br />
-              <span style={{ fontFamily: "var(--font-body)" }} className="italic font-normal text-pink-200">
+              <span
+                style={{ fontFamily: "var(--font-body)" }}
+                className="italic font-normal text-pink-200"
+              >
                 we are a bridge to Soweto.
               </span>
             </h2>
@@ -495,9 +550,9 @@ function Community() {
               className="mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-white/90"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Isiyalo actively offers space and expertise, to support
-              community mental health initiatives, strengthening the professional ecosystem and
-              the wellbeing of families across Soweto.
+              Isiyalo actively offers space and expertise, to support community mental health
+              initiatives, strengthening the professional ecosystem and the wellbeing of families
+              across Soweto.
             </p>
           </div>
         </Reveal>
@@ -539,13 +594,16 @@ function Contact() {
   const handleSubmit = () => {
     const subject = encodeURIComponent(`Enquiry for ${formData.service} from ${formData.name}`);
     const body = encodeURIComponent(
-      `Service Requested: ${formData.service}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\n— ${formData.name} (${formData.email})`
+      `Service Requested: ${formData.service}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\n— ${formData.name} (${formData.email})`,
     );
     window.location.href = `mailto:isiyalowellnesscentre@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section id="contact" className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28">
+    <section
+      id="contact"
+      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
+    >
       <div
         className="absolute inset-0 -z-10 opacity-40 animate-shimmer"
         style={{
@@ -574,12 +632,15 @@ function Contact() {
             backButtonText="Previous"
             nextButtonText="Continue"
             onFinalStepCompleted={handleSubmit}
-            stepCircleContainerClassName="bg-card/90 border border-border backdrop-blur-lg shadow-2xl"
+            stepCircleContainerClassName="bg-[#121215]/90 border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
           >
             <Step>
               <div className="space-y-4 py-2">
-                <h3 className="text-xl font-medium text-foreground">1. Your Contact Details</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground" style={{ fontFamily: "var(--font-body)" }}>
+                <h3 className="text-xl font-medium text-white">1. Your Contact Details</h3>
+                <p
+                  className="text-xs sm:text-sm text-white/70"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
                   Please share your details so we can get back to you promptly.
                 </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -588,7 +649,7 @@ function Contact() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Full Name"
-                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
                   />
                   <input
                     required
@@ -596,7 +657,7 @@ function Contact() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="Email Address"
-                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
                   />
                 </div>
                 <input
@@ -604,15 +665,18 @@ function Contact() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="Phone Number (Optional)"
-                  className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
                 />
               </div>
             </Step>
 
             <Step>
               <div className="space-y-4 py-2">
-                <h3 className="text-xl font-medium text-foreground">2. Select a Service</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground" style={{ fontFamily: "var(--font-body)" }}>
+                <h3 className="text-xl font-medium text-white">2. Select a Service</h3>
+                <p
+                  className="text-xs sm:text-sm text-white/70"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
                   Which service or inquiry type are you looking for?
                 </p>
                 <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
@@ -628,8 +692,8 @@ function Contact() {
                       onClick={() => setFormData({ ...formData, service })}
                       className={`rounded-xl border p-3.5 text-left text-xs font-mono tracking-wider transition ${
                         formData.service === service
-                          ? "border-primary bg-primary/10 text-primary font-semibold"
-                          : "border-border bg-background/50 text-muted-foreground hover:border-foreground/40"
+                          ? "border-pink-300 bg-pink-500/20 text-white font-semibold shadow-[0_0_15px_rgba(244,114,182,0.3)]"
+                          : "border-white/15 bg-white/5 text-white/70 hover:border-white/40 hover:text-white"
                       }`}
                     >
                       {service}
@@ -641,8 +705,11 @@ function Contact() {
 
             <Step>
               <div className="space-y-4 py-2">
-                <h3 className="text-xl font-medium text-foreground">3. Your Message</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground" style={{ fontFamily: "var(--font-body)" }}>
+                <h3 className="text-xl font-medium text-white">3. Your Message</h3>
+                <p
+                  className="text-xs sm:text-sm text-white/70"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
                   Tell us a bit about how we can support you.
                 </p>
                 <textarea
@@ -651,21 +718,24 @@ function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="How can we support you?"
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-pink-300 focus:ring-1 focus:ring-pink-300/40"
                 />
               </div>
             </Step>
 
             <Step>
               <div className="py-4 text-center space-y-3">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 text-primary text-xl font-bold">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-500/20 text-pink-300 text-xl font-bold border border-pink-300/40 shadow-[0_0_15px_rgba(244,114,182,0.3)]">
                   ✓
                 </div>
-                <h3 className="text-2xl font-medium text-foreground">Ready to Send!</h3>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto" style={{ fontFamily: "var(--font-body)" }}>
+                <h3 className="text-2xl font-medium text-white">Ready to Send!</h3>
+                <p
+                  className="text-sm text-white/80 max-w-md mx-auto"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
                   Click Complete below to launch your email client or reach out directly via:
                 </p>
-                <div className="font-mono text-xs uppercase tracking-[0.2em] text-primary pt-2">
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-pink-300 pt-2">
                   +27 81 346 8914 · isiyalowellnesscentre@gmail.com
                 </div>
               </div>
@@ -686,13 +756,19 @@ function Footer() {
             Isiyalo Management · Trading as Isiyalo Wellness
           </div>
           <div className="mt-1 text-xs sm:text-sm" style={{ fontFamily: "var(--font-body)" }}>
-            © {new Date().getFullYear()}  Soweto, South Africa.
+            © {new Date().getFullYear()} Soweto, South Africa.
           </div>
         </div>
         <div className="flex flex-wrap gap-4 sm:gap-6 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em]">
-          <a href="#" className="hover:opacity-70">Isiyalo Wellness</a>
-          <a href="#" className="hover:opacity-70">Isiyalo_Wellness</a>
-          <a href="#" className="hover:opacity-70">Isiyalo_Overflow</a>
+          <a href="#" className="hover:opacity-70">
+            Isiyalo Wellness
+          </a>
+          <a href="#" className="hover:opacity-70">
+            Isiyalo_Wellness
+          </a>
+          <a href="#" className="hover:opacity-70">
+            Isiyalo_Overflow
+          </a>
         </div>
       </div>
     </footer>

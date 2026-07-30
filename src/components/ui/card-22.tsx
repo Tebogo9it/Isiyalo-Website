@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import * as React from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Star, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 // Interface for component props for type safety and reusability
 export interface PlaceCardProps {
@@ -54,7 +54,7 @@ export const PlaceCard = ({
   // Animation variants for the carousel
   const carouselVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
+      x: direction > 0 ? "100%" : "-100%",
       opacity: 0,
     }),
     center: {
@@ -64,7 +64,7 @@ export const PlaceCard = ({
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? '100%' : '-100%',
+      x: direction < 0 ? "100%" : "-100%",
       opacity: 0,
     }),
   };
@@ -93,14 +93,14 @@ export const PlaceCard = ({
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
       variants={contentVariants}
-      whileHover={{ 
-        scale: 1.03, 
-        boxShadow: '0px 10px 30px -5px hsl(var(--foreground) / 0.1)',
-        transition: { type: 'spring', stiffness: 300, damping: 20 }
+      whileHover={{
+        scale: 1.03,
+        boxShadow: "0px 10px 30px -5px hsl(var(--foreground) / 0.1)",
+        transition: { type: "spring", stiffness: 300, damping: 20 },
       }}
       className={cn(
-        'w-full max-w-sm overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-lg cursor-pointer',
-        className
+        "w-full max-w-sm overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-lg cursor-pointer",
+        className,
       )}
     >
       {/* Image Carousel Section */}
@@ -116,20 +116,30 @@ export const PlaceCard = ({
             animate="center"
             exit="exit"
             transition={{
-              x: { type: 'spring', stiffness: 300, damping: 30 },
+              x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 },
             }}
             className="absolute h-full w-full object-cover"
           />
         </AnimatePresence>
-        
+
         {/* Carousel Navigation */}
         {images.length > 1 && (
           <div className="absolute inset-0 flex items-center justify-between p-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Button variant="ghost" size="icon" className="rounded-full bg-black/30 hover:bg-black/50 text-white" onClick={(e) => changeImage(-1, e)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full bg-black/30 hover:bg-black/50 text-white"
+              onClick={(e) => changeImage(-1, e)}
+            >
               <ChevronLeft className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full bg-black/30 hover:bg-black/50 text-white" onClick={(e) => changeImage(1, e)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full bg-black/30 hover:bg-black/50 text-white"
+              onClick={(e) => changeImage(1, e)}
+            >
               <ChevronRight className="h-5 w-5" />
             </Button>
           </div>
@@ -144,7 +154,10 @@ export const PlaceCard = ({
           ))}
         </div>
         <div className="absolute top-3 right-3">
-          <Badge variant="secondary" className="flex items-center gap-1 bg-background/70 backdrop-blur-sm">
+          <Badge
+            variant="secondary"
+            className="flex items-center gap-1 bg-background/70 backdrop-blur-sm"
+          >
             <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" /> {rating}
           </Badge>
         </div>
@@ -160,8 +173,8 @@ export const PlaceCard = ({
                   setCurrentIndex(index);
                 }}
                 className={cn(
-                  'h-1.5 w-1.5 rounded-full transition-all',
-                  currentIndex === index ? 'w-4 bg-white' : 'bg-white/50'
+                  "h-1.5 w-1.5 rounded-full transition-all",
+                  currentIndex === index ? "w-4 bg-white" : "bg-white/50",
                 )}
                 aria-label={`Go to image ${index + 1}`}
               />
@@ -188,8 +201,10 @@ export const PlaceCard = ({
         <motion.div variants={itemVariants} className="flex justify-between items-center pt-2">
           {pricePerNight !== undefined && (
             <p className="font-semibold">
-              {typeof pricePerNight === 'number' ? `$${pricePerNight}` : pricePerNight}{' '}
-              {typeof pricePerNight === 'number' && <span className="text-sm font-normal text-muted-foreground">/ session</span>}
+              {typeof pricePerNight === "number" ? `$${pricePerNight}` : pricePerNight}{" "}
+              {typeof pricePerNight === "number" && (
+                <span className="text-sm font-normal text-muted-foreground">/ session</span>
+              )}
             </p>
           )}
           <a href="#contact" onClick={onBookClick} className="ml-auto">

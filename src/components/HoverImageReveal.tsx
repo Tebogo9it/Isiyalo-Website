@@ -148,10 +148,7 @@ export default function HoverImageReveal({
   const y = useSpring(rawY, springCfg);
 
   const data = items || DEFAULT_ITEMS;
-  const count = Math.max(
-    1,
-    Math.min(MAX_ITEMS, (data.itemCount as number) || 5)
-  );
+  const count = Math.max(1, Math.min(MAX_ITEMS, (data.itemCount as number) || 5));
   const list: Item[] = [];
   for (let i = 1; i <= count; i++) {
     const it = data[`item${i}`] as Item | undefined;
@@ -216,13 +213,7 @@ export default function HoverImageReveal({
         {list.map((item, i) => {
           const src = item.image?.src;
           const yPos =
-            hovered == null
-              ? "100%"
-              : i < hovered
-                ? "-100%"
-                : i > hovered
-                  ? "100%"
-                  : "0%";
+            hovered == null ? "100%" : i < hovered ? "-100%" : i > hovered ? "100%" : "0%";
           return (
             <motion.div
               key={i}

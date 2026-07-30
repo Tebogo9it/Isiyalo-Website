@@ -1,4 +1,4 @@
-declare module 'sakura-js' {
+declare module "sakura-js" {
   export interface SakuraColor {
     gradientColorStart?: string;
     gradientColorEnd?: string;

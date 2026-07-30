@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 interface FallingSakuraProps {
   petalCount?: number;
@@ -13,7 +13,7 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const updateSize = () => {
@@ -36,7 +36,12 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
     const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
     // Define leaf colors (Sakura-like soft pinks and soft whites)
-    const petalColors = ['rgba(255, 230, 235, 0.85)', 'rgba(255, 210, 225, 0.8)', 'rgba(245, 195, 210, 0.75)', 'rgba(255, 240, 245, 0.9)'];
+    const petalColors = [
+      "rgba(255, 230, 235, 0.85)",
+      "rgba(255, 210, 225, 0.8)",
+      "rgba(245, 195, 210, 0.75)",
+      "rgba(255, 240, 245, 0.9)",
+    ];
 
     const petals = Array.from({ length: petalCount }, () => ({
       x: Math.random() * width,
@@ -51,7 +56,7 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
     }));
 
     // Function to draw a single petal
-    const drawPetal = (petal: typeof petals[0]) => {
+    const drawPetal = (petal: (typeof petals)[0]) => {
       ctx.save();
       ctx.translate(petal.x, petal.y);
       ctx.rotate(petal.rotation);
@@ -59,7 +64,14 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
       ctx.beginPath();
       // Complex organic petal shape using bezier curves
       ctx.moveTo(0, 0);
-      ctx.bezierCurveTo(-petal.size / 2, -petal.size / 3, -petal.size / 3, -petal.size, 0, -petal.size / 1.5);
+      ctx.bezierCurveTo(
+        -petal.size / 2,
+        -petal.size / 3,
+        -petal.size / 3,
+        -petal.size,
+        0,
+        -petal.size / 1.5,
+      );
       ctx.bezierCurveTo(petal.size / 3, -petal.size, petal.size / 2, -petal.size / 3, 0, 0);
       ctx.fillStyle = petal.color;
       ctx.fill();
@@ -68,7 +80,7 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
     };
 
     // Function to update a single petal's position and wobble
-    const updatePetal = (petal: typeof petals[0]) => {
+    const updatePetal = (petal: (typeof petals)[0]) => {
       petal.x += petal.speedX + Math.sin(petal.wobble) * 0.3;
       petal.y += petal.speedY;
       petal.rotation += 0.01;
@@ -103,10 +115,10 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
       height = canvas.height;
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameRef.current);
     };
   }, [petalCount]);
@@ -116,12 +128,12 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
       ref={canvasRef}
       className={className}
       style={{
-        position: 'absolute',
+        position: "absolute",
         top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
-        pointerEvents: 'none',
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
         zIndex: 5,
       }}
     />
