@@ -15,6 +15,7 @@ import HoverImageReveal from "@/components/HoverImageReveal";
 import communityBg from "@/assets/community-bg.jpg";
 import Particles from "@/components/Particles";
 import Galaxy from "@/components/Galaxy";
+import Stepper, { Step } from "@/components/Stepper";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -522,6 +523,22 @@ function Community() {
 }
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "Clinical Counselling",
+    message: "",
+  });
+
+  const handleSubmit = () => {
+    const subject = encodeURIComponent(`Enquiry for ${formData.service} from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Service Requested: ${formData.service}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\n— ${formData.name} (${formData.email})`
+    );
+    window.location.href = `mailto:isiyalowellnesscentre@gmail.com?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section id="contact" className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28">
       <div
@@ -532,7 +549,7 @@ function Contact() {
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 -z-10 bg-background/70 backdrop-blur-sm" />
+      <div className="absolute inset-0 -z-10 bg-background/80 backdrop-blur-md" />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <Reveal>
@@ -541,55 +558,115 @@ function Contact() {
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl tracking-tight">
+          <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl tracking-tight font-medium">
             Begin the conversation.
           </h2>
         </Reveal>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const data = new FormData(e.currentTarget);
-            const subject = encodeURIComponent(`Enquiry from ${data.get("name")}`);
-            const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
-            window.location.href = `mailto:isiyalowellnesscentre@gmail.com?subject=${subject}&body=${body}`;
-          }}
-          className="mx-auto mt-8 sm:mt-12 grid max-w-2xl grid-cols-1 gap-3 text-left"
-        >
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <input
-              required
-              name="name"
-              placeholder="Name"
-              className="w-full rounded-full border border-border bg-card px-4 py-3.5 sm:px-5 sm:py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
-            />
-            <input
-              required
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="w-full rounded-full border border-border bg-card px-4 py-3.5 sm:px-5 sm:py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
-            />
-          </div>
-          <textarea
-            required
-            name="message"
-            rows={4}
-            placeholder="How can we support you?"
-            className="w-full rounded-2xl sm:rounded-3xl border border-border bg-card px-4 py-3.5 sm:px-5 sm:py-4 text-sm outline-none transition focus:border-foreground/60 focus:ring-2 focus:ring-foreground/10"
-          />
-          <div className="mt-2 flex flex-col items-stretch justify-between gap-3 sm:flex-row sm:items-center">
-            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-muted-foreground break-all sm:break-normal">
-              +27 81 346 8914 · isiyalowellnesscentre@gmail.com
-            </div>
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 font-mono text-[11px] uppercase tracking-[0.24em] text-background transition hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto"
-            >
-              Send message
-            </button>
-          </div>
-        </form>
+        <div className="mt-8 sm:mt-12 text-left">
+          <Stepper
+            initialStep={1}
+            backButtonText="Previous"
+            nextButtonText="Continue"
+            onFinalStepCompleted={handleSubmit}
+            stepCircleContainerClassName="bg-card/90 border border-border backdrop-blur-lg shadow-2xl"
+          >
+            <Step>
+              <div className="space-y-4 py-2">
+                <h3 className="text-xl font-medium text-foreground">1. Your Contact Details</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground" style={{ fontFamily: "var(--font-body)" }}>
+                  Please share your details so we can get back to you promptly.
+                </p>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <input
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Full Name"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                  />
+                  <input
+                    required
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="Email Address"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="Phone Number (Optional)"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                />
+              </div>
+            </Step>
+
+            <Step>
+              <div className="space-y-4 py-2">
+                <h3 className="text-xl font-medium text-foreground">2. Select a Service</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground" style={{ fontFamily: "var(--font-body)" }}>
+                  Which service or inquiry type are you looking for?
+                </p>
+                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                  {[
+                    "Clinical Counselling",
+                    "Practice Administration",
+                    "Consulting Spaces",
+                    "Workshops & Community Care",
+                  ].map((service) => (
+                    <button
+                      key={service}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, service })}
+                      className={`rounded-xl border p-3.5 text-left text-xs font-mono tracking-wider transition ${
+                        formData.service === service
+                          ? "border-primary bg-primary/10 text-primary font-semibold"
+                          : "border-border bg-background/50 text-muted-foreground hover:border-foreground/40"
+                      }`}
+                    >
+                      {service}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </Step>
+
+            <Step>
+              <div className="space-y-4 py-2">
+                <h3 className="text-xl font-medium text-foreground">3. Your Message</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground" style={{ fontFamily: "var(--font-body)" }}>
+                  Tell us a bit about how we can support you.
+                </p>
+                <textarea
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="How can we support you?"
+                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+                />
+              </div>
+            </Step>
+
+            <Step>
+              <div className="py-4 text-center space-y-3">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 text-primary text-xl font-bold">
+                  ✓
+                </div>
+                <h3 className="text-2xl font-medium text-foreground">Ready to Send!</h3>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto" style={{ fontFamily: "var(--font-body)" }}>
+                  Click Complete below to launch your email client or reach out directly via:
+                </p>
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-primary pt-2">
+                  +27 81 346 8914 · isiyalowellnesscentre@gmail.com
+                </div>
+              </div>
+            </Step>
+          </Stepper>
+        </div>
       </div>
     </section>
   );
