@@ -24,6 +24,7 @@ import FacebookFillIcon from "@/components/FacebookFillIcon";
 import YoutubeFillIcon from "@/components/YoutubeFillIcon";
 import StarfieldBackground from "@/components/StarfieldBackground";
 import reachOutBg from "@/assets/reachout.jpg";
+import coreServeBg from "@/assets/coreserve.jpg";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -426,10 +427,10 @@ function Services() {
       id="services"
       className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
     >
-      {/* Full background image */}
+      {/* Full background image - coreserve.jpg */}
       <div
-        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat animate-shimmer"
-        style={{ backgroundImage: `url(${blossoms})` }}
+        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${coreServeBg})` }}
       />
       {/* Soft overlay so background image is fully visible and vibrant */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/20 to-background/50" />
