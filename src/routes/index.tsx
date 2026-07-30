@@ -20,6 +20,7 @@ import Stepper, { Step } from "@/components/Stepper";
 import GooeyNav from "@/components/GooeyNav";
 import AnimatedContent from "@/components/AnimatedContent";
 import InstagramFillIcon from "@/components/InstagramFillIcon";
+import StarfieldBackground from "@/components/StarfieldBackground";
 import "sakura-js/dist/sakura.css";
 
 export const Route = createFileRoute("/")({
@@ -620,17 +621,12 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
+      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28 bg-[#0a0a0f]"
     >
-      <div
-        className="absolute inset-0 -z-10 opacity-40 animate-shimmer"
-        style={{
-          backgroundImage: `url(${rainWindow.url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      <div className="absolute inset-0 -z-10 bg-background/80 backdrop-blur-md" />
+      <div className="absolute inset-0 -z-20">
+        <StarfieldBackground count={400} speed={0.5} starColor="#ffffff" twinkle />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-black/40 pointer-events-none" />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <Reveal>
