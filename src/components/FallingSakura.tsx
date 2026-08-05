@@ -3,9 +3,10 @@ import React, { useEffect, useRef } from "react";
 interface FallingSakuraProps {
   petalCount?: number;
   className?: string;
+  colors?: string[];
 }
 
-const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, className }) => {
+const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, className, colors }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>(0);
 
@@ -35,12 +36,12 @@ const FallingSakura: React.FC<FallingSakuraProps> = ({ petalCount = 30, classNam
     // Helper for random range
     const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
-    // Define leaf colors (Sakura-like soft pinks and soft whites)
-    const petalColors = [
-      "rgba(255, 230, 235, 0.85)",
-      "rgba(255, 210, 225, 0.8)",
-      "rgba(245, 195, 210, 0.75)",
-      "rgba(255, 240, 245, 0.9)",
+    // Define leaf colors (Black petals)
+    const petalColors = colors || [
+      "rgba(15, 15, 15, 0.9)",
+      "rgba(35, 35, 35, 0.85)",
+      "rgba(0, 0, 0, 0.8)",
+      "rgba(50, 50, 50, 0.95)",
     ];
 
     const petals = Array.from({ length: petalCount }, () => ({

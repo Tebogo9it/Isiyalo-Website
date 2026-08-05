@@ -3,8 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg.asset.json";
 import logo from "@/assets/isiyalo-logo.png";
 import rainWindow from "@/assets/rain-window.jpg.asset.json";
-import blossoms from "@/assets/blossoms.jpg";
-import heroVideo from "@/assets/sakura_hero_30s.mp4";
 import VariableProximity from "@/components/VariableProximity";
 import TrueFocus from "@/components/TrueFocus";
 import BlurText from "@/components/BlurText";
@@ -23,7 +21,7 @@ import InstagramFillIcon from "@/components/InstagramFillIcon";
 import FacebookFillIcon from "@/components/FacebookFillIcon";
 import YoutubeFillIcon from "@/components/YoutubeFillIcon";
 import StarfieldBackground from "@/components/StarfieldBackground";
-import reachOutBg from "@/assets/reachout.jpg";
+import richOutBg from "@/assets/richout.jpg";
 import coreServeBg from "@/assets/coreserve.jpg";
 import "sakura-js/dist/sakura.css";
 
@@ -33,7 +31,7 @@ export const Route = createFileRoute("/")({
       {
         rel: "preload",
         as: "image",
-        href: reachOutBg,
+        href: richOutBg,
       },
       {
         rel: "preload",
@@ -318,21 +316,10 @@ function Statement() {
   return (
     <section
       id="our-statement"
-      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
+      className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28 bg-white"
     >
       <span id="about" className="absolute -top-24" />
       <FallingSakura petalCount={35} />
-      {/* Background image */}
-      <div
-        className="absolute inset-0 -z-10 animate-shimmer"
-        style={{
-          backgroundImage: `url(${blossoms})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-left">
         <Reveal>
@@ -613,13 +600,53 @@ function Contact() {
     service: "Clinical Counselling",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = () => {
-    const subject = encodeURIComponent(`Enquiry for ${formData.service} from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Service Requested: ${formData.service}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\n— ${formData.name} (${formData.email})`,
-    );
-    window.location.href = `mailto:isiyalowellnesscentre@gmail.com?subject=${subject}&body=${body}`;
+  const handleSubmit = async () => {
+    setStatus("submitting");
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "6b3d80c8-df38-453b-ad55-785076c978b0",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "Not provided",
+          service: formData.service,
+          message: formData.message,
+          subject: `New Inquiry (${formData.service}) from ${formData.name}`,
+          from_name: "Isiyalo Wellness Centre Website",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setErrorMessage(result.message || "Unable to send directly. Opening email client...");
+        setTimeout(() => {
+          const subject = encodeURIComponent(`Enquiry for ${formData.service} from ${formData.name}`);
+          const body = encodeURIComponent(
+            `Service Requested: ${formData.service}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\n— ${formData.name} (${formData.email})`,
+          );
+          window.location.href = `mailto:isiyalowellnesscentre@gmail.com?subject=${subject}&body=${body}`;
+        }, 1200);
+      }
+    } catch {
+      setStatus("error");
+      setErrorMessage("Network issue. Opening email client fallback...");
+      const subject = encodeURIComponent(`Enquiry for ${formData.service} from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Service Requested: ${formData.service}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\n— ${formData.name} (${formData.email})`,
+      );
+      window.location.href = `mailto:isiyalowellnesscentre@gmail.com?subject=${subject}&body=${body}`;
+    }
   };
 
   return (
@@ -627,10 +654,10 @@ function Contact() {
       id="contact"
       className="relative isolate overflow-hidden border-t border-border py-16 sm:py-28"
     >
-      {/* Full background image - reachout.jpg with zero overlay or blur */}
+      {/* Full background image - richout.jpg */}
       <div
         className="absolute inset-0 -z-20 h-full w-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${reachOutBg})` }}
+        style={{ backgroundImage: `url(${richOutBg})` }}
       />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
@@ -759,19 +786,43 @@ function Contact() {
 
             <Step>
               <div className="py-4 text-center space-y-3">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-white text-xl font-bold border border-slate-900 shadow-md">
-                  ✓
-                </div>
-                <h3 className="text-2xl font-medium text-slate-900">Ready to Send!</h3>
-                <p
-                  className="text-sm text-slate-700 max-w-md mx-auto"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  Click Complete below to launch your email client or reach out directly via:
-                </p>
-                <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-900 font-semibold pt-2">
-                  +27 81 346 8914 · isiyalowellnesscentre@gmail.com
-                </div>
+                {status === "submitting" ? (
+                  <div className="space-y-3 py-4">
+                    <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-slate-900 border-t-transparent" />
+                    <p className="text-sm font-medium text-slate-800">Sending your message...</p>
+                  </div>
+                ) : status === "success" ? (
+                  <div className="space-y-3 py-4">
+                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white text-2xl font-bold shadow-lg">
+                      ✓
+                    </div>
+                    <h3 className="text-2xl font-medium text-slate-900">Message Sent!</h3>
+                    <p className="text-sm text-slate-700 max-w-md mx-auto" style={{ fontFamily: "var(--font-body)" }}>
+                      Thank you for reaching out to Isiyalo Wellness Centre. We have received your inquiry and will be in touch shortly.
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-white text-xl font-bold border border-slate-900 shadow-md">
+                      ✓
+                    </div>
+                    <h3 className="text-2xl font-medium text-slate-900">Ready to Send!</h3>
+                    <p
+                      className="text-sm text-slate-700 max-w-md mx-auto"
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      Click Complete below to send your inquiry directly to our team:
+                    </p>
+                    {errorMessage && (
+                      <p className="text-xs text-amber-700 font-medium bg-amber-50 rounded-lg p-2 max-w-md mx-auto">
+                        {errorMessage}
+                      </p>
+                    )}
+                    <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-900 font-semibold pt-2">
+                      +27 81 346 8914 · isiyalowellnesscentre@gmail.com
+                    </div>
+                  </>
+                )}
               </div>
             </Step>
           </Stepper>
